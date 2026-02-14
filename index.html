@@ -2416,11 +2416,11 @@
 
     <!-- Feature 1: Real Conversations -->
     <div class="feature-row">
-      <div class="feature-visual slide-from-right slide-delay">
+      <div class="feature-visual">
         <img src="assets/images/2.png" alt="Real conversation interface"
           style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius-xl);">
       </div>
-      <div class="feature-content slide-from-left">
+      <div class="feature-content">
         <h3>Real conversations instead of memorization</h3>
         <p>Every lesson is personalized to your level, goals, and learning style. Your tutor adjusts in real-time so
           you're always challenged but never lost.</p>
@@ -2453,11 +2453,11 @@
 
     <!-- Feature 2: Structured Practice -->
     <div class="feature-row">
-      <div class="feature-visual slide-from-left slide-delay">
+      <div class="feature-visual">
         <img src="assets/images/3.png" alt="Structured practice schedule"
           style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius-xl);">
       </div>
-      <div class="feature-content slide-from-right">
+      <div class="feature-content">
         <h3>Structured practice that builds confidence</h3>
         <p>With tutors across every timezone, there's always someone available. Book lessons 24/7 — morning, evening, or
           weekend — whatever fits your life.</p>
@@ -2490,11 +2490,11 @@
 
     <!-- Feature 3: Teach & Impact -->
     <div class="feature-row">
-      <div class="feature-visual slide-from-right slide-delay">
+      <div class="feature-visual">
         <img src="assets/images/5.png" alt="Teach a language on LingoWire"
           style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius-xl);">
       </div>
-      <div class="feature-content slide-from-left">
+      <div class="feature-content">
         <h3>Teach someone a new language and make a real-world impact</h3>
         <p>LingoWire isn't just for learners. If you're fluent in a language, you can help someone else speak it
           confidently. Share your knowledge, connect across cultures, and make a meaningful difference — one
@@ -2852,6 +2852,9 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <script>
     // Scroll nav shadow
     const nav = document.getElementById('nav');
@@ -2900,18 +2903,49 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Slide animations (reversible)
-    const slideEls = document.querySelectorAll('.slide-from-left, .slide-from-right');
-    const slideObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
+    // GSAP ScrollTrigger feature animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    function getSlideDistance() {
+      return window.innerWidth <= 768 ? 60 : 120;
+    }
+
+    document.querySelectorAll('.feature-row').forEach((row, i) => {
+      const visual = row.querySelector('.feature-visual');
+      const content = row.querySelector('.feature-content');
+      if (!visual || !content) return;
+
+      const isOdd = i % 2 === 0;  // 0-indexed: 0,2 = odd rows visually
+      const dist = getSlideDistance();
+
+      // Visual: odd rows from right, even rows from left
+      gsap.fromTo(visual,
+        { x: isOdd ? dist : -dist, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 1, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 85%',
+            end: 'top 30%',
+            scrub: 1,
+          }
         }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    slideEls.forEach(el => slideObserver.observe(el));
+      );
+
+      // Content: odd rows from left, even rows from right
+      gsap.fromTo(content,
+        { x: isOdd ? -dist : dist, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 1, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 85%',
+            end: 'top 30%',
+            scrub: 1,
+          }
+        }
+      );
+    });
 
     // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
