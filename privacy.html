@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — LingoWire</title>
+    <meta name="description" content="LingoWire Privacy Policy. Learn how we collect, use, and protect your data.">
+    <link rel="icon" type="image/png" href="assets/images/6.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --clr-primary: #1E3A8A;
+            --clr-primary-light: #2B4FA8;
+            --clr-primary-dark: #152C6B;
+            --clr-accent: #42B4E6;
+            --clr-bg: #FAFBFF;
+            --clr-surface: #FFFFFF;
+            --clr-text: #1A1A1A;
+            --clr-text-muted: #6B6B6B;
+            --clr-border: #DEE5F0;
+            --font-display: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav.scrolled {
+            border-bottom-color: var(--clr-border);
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--clr-primary);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        /* ─── CONTENT ─── */
+        .policy-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 140px 32px 100px;
+        }
+
+        .policy-hero {
+            margin-bottom: 48px;
+        }
+
+        .policy-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--clr-primary-dark);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .policy-hero .tagline {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            margin-bottom: 4px;
+        }
+
+        .policy-hero .tagline-sub {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--clr-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .policy-hero .intro {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            line-height: 1.8;
+        }
+
+        .policy-section {
+            margin-bottom: 48px;
+        }
+
+        .policy-section h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--clr-primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--clr-accent);
+            display: inline-block;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .policy-section ul li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .policy-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--clr-accent);
+            border-radius: 50%;
+        }
+
+        .policy-section ul li strong {
+            color: var(--clr-text);
+        }
+
+        .policy-section p {
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .contact-box {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-top: 12px;
+        }
+
+        .contact-box p {
+            margin-bottom: 0;
+            color: var(--clr-text);
+        }
+
+        .contact-box a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--clr-text-muted);
+            border-top: 1px solid var(--clr-border);
+        }
+
+        @media (max-width: 600px) {
+            .policy-wrapper {
+                padding: 120px 20px 60px;
+            }
+
+            .nav {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/4.png" alt="LingoWire">
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="policy-wrapper">
+        <div class="policy-hero">
+            <h1>Privacy Policy</h1>
+            <p class="tagline">We never sell your data.</p>
+            <p class="tagline-sub">Your trust is our baseline.</p>
+            <p class="intro">We collect only what we need to run Lingowire, personalize practice, and keep the community
+                safe. We minimize retention and encrypt data in transit and at rest.</p>
+        </div>
+
+        <section class="policy-section">
+            <h2>What we collect</h2>
+            <ul>
+                <li><strong>Account:</strong> email, display name/handle, profile image, languages, goals.</li>
+                <li><strong>Usage:</strong> sessions joined, progress signals, device/app version for diagnostics.</li>
+                <li><strong>Safety:</strong> limited conversation metadata and reports to enforce community rules.</li>
+                <li><strong>Optional:</strong> feedback you share with support or surveys.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>How we use it</h2>
+            <ul>
+                <li>Match you with partners, groups, and prompts that fit your goals and level.</li>
+                <li>Improve app quality: diagnostics to keep calls, chat, and practice reliable.</li>
+                <li>Safety: detect abuse, respond to reports, and keep conversations respectful.</li>
+                <li>Product decisions: anonymized insights to shape features learners need.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Your choices & control</h2>
+            <ul>
+                <li><strong>Access/Deletion:</strong> request your data or deletion anytime at <a
+                        href="mailto:privacy@lingowire.com">privacy@lingowire.com</a>.</li>
+                <li><strong>Preferences:</strong> adjust notifications and profile visibility in-app (where available).
+                </li>
+                <li><strong>Marketing:</strong> unsubscribe via email footers; transactional emails may still send.</li>
+                <li><strong>Permissions:</strong> you can revoke camera/mic access via your device settings.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Retention & security</h2>
+            <p>We retain only what's necessary for account continuity, safety, and legal compliance. Data is encrypted
+                in
+                transit and at rest, and access is restricted to vetted team members. If you close your account, we
+                remove
+                personal data except where law or safety investigations require limited retention.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Third parties</h2>
+            <p>We use trusted infrastructure and analytics providers to run the service. They are bound by
+                confidentiality and
+                data protection agreements and may only process data to support Lingowire operations.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Contact</h2>
+            <div class="contact-box">
+                <p>Questions or requests? Email <a href="mailto:privacy@lingowire.com">privacy@lingowire.com</a></p>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-bottom">
+        <span>&copy; 2026 LingoWire. All rights reserved.</span>
+    </div>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+    </script>
+
+</body>
+
+</html>

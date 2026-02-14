@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions — LingoWire</title>
+    <meta name="description"
+        content="LingoWire Terms & Conditions. Community-first principles for a respectful, safe, and fair platform.">
+    <link rel="icon" type="image/png" href="assets/images/6.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --clr-primary: #1E3A8A;
+            --clr-primary-light: #2B4FA8;
+            --clr-primary-dark: #152C6B;
+            --clr-accent: #42B4E6;
+            --clr-bg: #FAFBFF;
+            --clr-surface: #FFFFFF;
+            --clr-text: #1A1A1A;
+            --clr-text-muted: #6B6B6B;
+            --clr-border: #DEE5F0;
+            --font-display: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav.scrolled {
+            border-bottom-color: var(--clr-border);
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--clr-primary);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .policy-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 140px 32px 100px;
+        }
+
+        .policy-hero {
+            margin-bottom: 48px;
+        }
+
+        .policy-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--clr-primary-dark);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .policy-hero .tagline {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            margin-bottom: 4px;
+        }
+
+        .policy-hero .tagline-sub {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--clr-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .policy-hero .intro {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            line-height: 1.8;
+        }
+
+        .policy-section {
+            margin-bottom: 48px;
+        }
+
+        .policy-section h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--clr-primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--clr-accent);
+            display: inline-block;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .policy-section ul li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .policy-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--clr-accent);
+            border-radius: 50%;
+        }
+
+        .policy-section ul li strong {
+            color: var(--clr-text);
+        }
+
+        .policy-section p {
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .policy-section a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .policy-section a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-box {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-top: 12px;
+        }
+
+        .contact-box p {
+            margin-bottom: 0;
+            color: var(--clr-text);
+        }
+
+        .contact-box a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--clr-text-muted);
+            border-top: 1px solid var(--clr-border);
+        }
+
+        @media (max-width: 600px) {
+            .policy-wrapper {
+                padding: 120px 20px 60px;
+            }
+
+            .nav {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/4.png" alt="LingoWire">
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="policy-wrapper">
+        <div class="policy-hero">
+            <h1>Terms & Conditions</h1>
+            <p class="tagline">Community-first principles.</p>
+            <p class="tagline-sub">Use Lingowire responsibly.</p>
+            <p class="intro">These terms keep practice spaces respectful, safe, and fair. By using Lingowire you agree
+                to
+                follow them and the community guidelines.</p>
+        </div>
+
+        <section class="policy-section">
+            <h2>Use of the service</h2>
+            <ul>
+                <li><strong>Be respectful:</strong> no harassment, hate speech, or harmful content.</li>
+                <li><strong>Authentic participation:</strong> no bots, spam, impersonation, or scraping.</li>
+                <li><strong>Safety first:</strong> report issues to <a
+                        href="mailto:support@lingowire.com">support@lingowire.com</a>.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Accounts & payments</h2>
+            <ul>
+                <li>You're responsible for your account security and activity.</li>
+                <li>Subscriptions (if offered) auto-renew per App Store / Google Play terms; manage billing there.</li>
+                <li>Refunds follow the policies of your app store; we don't override store rules.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Content & conduct</h2>
+            <ul>
+                <li>You grant Lingowire a limited license to host and display your contributions to operate the service.
+                </li>
+                <li>No illegal, infringing, or unsafe material. Respect IP and privacy of others.</li>
+                <li>We may moderate, suspend, or remove accounts that violate these terms or community guidelines.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Disclaimers & liability</h2>
+            <ul>
+                <li>Service is provided "as is"; features and availability may change.</li>
+                <li>To the extent allowed by law, we're not liable for indirect or consequential damages.</li>
+                <li>Some jurisdictions limit disclaimers; where they do, your rights may differ.</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Updates</h2>
+            <p>We may update these terms. Continued use means you accept the latest version. We'll notify users of
+                material
+                changes.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Contact</h2>
+            <div class="contact-box">
+                <p>Questions about these terms? Email <a href="mailto:support@lingowire.com">support@lingowire.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-bottom">
+        <span>&copy; 2026 LingoWire. All rights reserved.</span>
+    </div>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+    </script>
+
+</body>
+
+</html>

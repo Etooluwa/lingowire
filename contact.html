@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — LingoWire</title>
+    <meta name="description"
+        content="Get in touch with the LingoWire team. Partnerships, support, feedback, and press inquiries.">
+    <link rel="icon" type="image/png" href="assets/images/6.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --clr-primary: #1E3A8A;
+            --clr-primary-light: #2B4FA8;
+            --clr-primary-dark: #152C6B;
+            --clr-accent: #42B4E6;
+            --clr-bg: #FAFBFF;
+            --clr-surface: #FFFFFF;
+            --clr-text: #1A1A1A;
+            --clr-text-muted: #6B6B6B;
+            --clr-border: #DEE5F0;
+            --font-display: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --radius-lg: 12px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav.scrolled {
+            border-bottom-color: var(--clr-border);
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--clr-primary);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .contact-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 140px 32px 100px;
+        }
+
+        .contact-hero {
+            margin-bottom: 48px;
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--clr-primary-dark);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .contact-hero .tagline {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-hero .tagline-sub {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--clr-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .contact-hero .intro {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            margin-bottom: 48px;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--clr-primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--clr-accent);
+            display: inline-block;
+        }
+
+        .contact-section p {
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .contact-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+
+        .contact-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .contact-card .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--clr-accent);
+            margin-bottom: 8px;
+        }
+
+        .contact-card a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .social-row {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 32px;
+        }
+
+        .social-row p {
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: var(--clr-primary);
+            color: #fff;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .social-links a:hover {
+            background: var(--clr-primary-light);
+            transform: translateY(-1px);
+        }
+
+        .press-box {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+        }
+
+        .press-box .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--clr-accent);
+            margin-bottom: 8px;
+        }
+
+        .press-box a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .press-box a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--clr-text-muted);
+            border-top: 1px solid var(--clr-border);
+        }
+
+        @media (max-width: 600px) {
+            .contact-wrapper {
+                padding: 120px 20px 60px;
+            }
+
+            .nav {
+                padding: 14px 20px;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/4.png" alt="LingoWire">
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="contact-wrapper">
+        <div class="contact-hero">
+            <h1>Contact</h1>
+            <p class="tagline">We reply in 1–2 business days.</p>
+            <p class="tagline-sub">Let's talk about Lingowire.</p>
+            <p class="intro">Whether you're exploring partnerships, need support, or want to share feedback, we're here.
+                Tell
+                us a bit more and we'll route you to the right person.</p>
+        </div>
+
+        <section class="contact-section">
+            <h2>Reach us directly</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="label">General inquiries</div>
+                    <a href="mailto:hello@lingowire.com">hello@lingowire.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="label">Partnerships</div>
+                    <a href="mailto:hello@lingowire.com">hello@lingowire.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="label">Support</div>
+                    <a href="mailto:hello@lingowire.com">hello@lingowire.com</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Follow us</h2>
+            <div class="social-row">
+                <p>Prefer socials? Follow us for product updates, launch news, and weekly practice prompts.</p>
+                <div class="social-links">
+                    <a href="https://www.tiktok.com/@lingowire" target="_blank">TikTok</a>
+                    <a href="https://www.instagram.com/lingowire" target="_blank">Instagram</a>
+                    <a href="https://x.com/lingowire" target="_blank">X</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Press & speaking</h2>
+            <div class="press-box">
+                <div class="label">Media inquiries</div>
+                <a href="mailto:hello@lingowire.com">hello@lingowire.com</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-bottom">
+        <span>&copy; 2026 LingoWire. All rights reserved.</span>
+    </div>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+    </script>
+
+</body>
+
+</html>
