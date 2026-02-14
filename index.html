@@ -1937,7 +1937,6 @@
       .hero {
         padding: 120px 20px 60px;
         text-align: center;
-        overflow: hidden;
       }
 
       .hero h1 {
@@ -2948,6 +2947,21 @@
         }
       );
     });
+
+    // Adjust orbit radius on mobile
+    function adjustOrbitRadius() {
+      const isMobile = window.innerWidth <= 768;
+      const radius = isMobile ? 130 : 260;
+      document.querySelectorAll('.orbit-item').forEach(item => {
+        const style = item.getAttribute('style');
+        if (style) {
+          const updated = style.replace(/translate\(\d+px\)/g, `translate(${radius}px)`);
+          item.setAttribute('style', updated);
+        }
+      });
+    }
+    adjustOrbitRadius();
+    window.addEventListener('resize', adjustOrbitRadius);
 
     // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
