@@ -1741,38 +1741,7 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
 
-      .nav-toggle {
-        display: flex;
-      }
-
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-
-      .hero-stats {
-        gap: 24px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-
-      .price-grid {
-        max-width: 100%;
-      }
-    }
 
     /* ─── WHY LINGOWIRE ─── */
     .why-section {
@@ -1852,8 +1821,303 @@
         max-width: 400px;
         margin: 0 auto;
       }
+
+      .why-header h2 {
+        font-size: 2rem;
+      }
+
+      .why-section {
+        padding: 60px 20px;
+      }
     }
-  </style>
+
+    /* ─── MOBILE MENU ─── */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--clr-surface);
+        flex-direction: column;
+        padding: 100px 32px 40px;
+        gap: 0;
+        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.1);
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 99;
+        display: flex;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.05rem;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--clr-border);
+      }
+
+      .nav-toggle {
+        display: flex;
+        z-index: 101;
+      }
+
+      .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .nav-actions .download-dropdown {
+        display: none;
+      }
+
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 98;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+
+      .mobile-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    /* ─── SMALL SCREENS ─── */
+    @media (max-width: 600px) {
+      .nav {
+        padding: 12px 16px;
+      }
+
+      .nav-logo img {
+        height: 36px !important;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 100px 20px 60px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-visual {
+        height: 380px;
+      }
+
+      .orbit-system {
+        width: 380px;
+        height: 380px;
+      }
+
+      .phone-mockup {
+        width: 180px;
+      }
+
+      .orbit-item .bubble-content {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+
+      .orbit-item .bubble-content img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      /* Download dropdown — tap-friendly on mobile */
+      .download-dropdown .dropdown-menu {
+        min-width: 180px;
+      }
+
+      /* Why Section */
+      .why-header h2 {
+        font-size: 1.7rem;
+      }
+
+      .why-header p {
+        font-size: 0.95rem;
+      }
+
+      /* How It Works */
+      .how {
+        padding: 60px 20px;
+      }
+
+      .how-grid {
+        gap: 16px;
+      }
+
+      .how-card {
+        padding: 28px 20px;
+      }
+
+      /* Features */
+      .features {
+        padding: 40px 20px 60px;
+      }
+
+      .feature-row {
+        gap: 24px;
+        margin-bottom: 40px;
+      }
+
+      .feature-visual img {
+        border-radius: 16px;
+      }
+
+      .feature-content h3 {
+        font-size: 1.3rem;
+      }
+
+      .feature-content p {
+        font-size: 0.92rem;
+      }
+
+      .feature-checks {
+        gap: 10px;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 60px 0;
+      }
+
+      .test-inner {
+        padding: 0 20px;
+      }
+
+      .test-card {
+        min-width: 280px;
+        max-width: 280px;
+        padding: 24px;
+      }
+
+      /* FAQ */
+      .faq-section {
+        padding: 60px 20px;
+      }
+
+      .faq-question {
+        font-size: 0.95rem;
+        padding: 18px 0;
+      }
+
+      /* CTA */
+      .cta-box {
+        padding: 40px 20px;
+        border-radius: 16px;
+      }
+
+      .cta-content h2 {
+        font-size: 1.6rem;
+      }
+
+      .cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+
+      /* Footer */
+      .footer {
+        padding: 40px 20px 0;
+      }
+
+      .footer-brand p {
+        font-size: 0.9rem;
+      }
+
+      .footer-badges {
+        flex-direction: column;
+      }
+
+      .store-badge {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        padding: 24px 16px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-bottom-links {
+        gap: 16px;
+      }
+
+      /* Section titles */
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-sub {
+        font-size: 0.95rem;
+      }
+
+      .section-eyebrow {
+        font-size: 0.72rem;
+      }
+    }
   </style>
 </head>
 
@@ -1897,6 +2161,7 @@
       </button>
     </div>
   </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <!-- ═══════ HERO ═══════ -->
   <section class="hero">
@@ -2562,6 +2827,36 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.getElementById('mobileOverlay');
+
+    function closeMenu() {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+      overlay.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.contains('open');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        navToggle.classList.add('active');
+        navLinks.classList.add('open');
+        overlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
 
     // Reveal on scroll
