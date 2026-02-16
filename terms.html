@@ -4,37 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript">
-    (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
-    ;r.type="text/javascript"
-    ;r.integrity="sha384-w57H696k8B7565i8d53066385413158485208632616428766150244431015684"
-    ;r.crossOrigin="anonymous";r.async=true
-    ;r.src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"
-    ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
-    console.log("[Amplitude] Error: could not load SDK")}}
-    ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
-    ;function s(e,t){e.prototype[t]=function(){
-    this._q.push({name:t,args:Array.prototype.slice.call(arguments,0)});return this}}
-    var o=function(){this._q=[];return this}
-    ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
-    ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
-    ;return this};var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
-    ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
-    ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
-    ;function v(e){function t(t){e[t]=function(){
-    e._q.push({name:t,args:Array.prototype.slice.call(arguments,0)})}}
-    for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
-    e=(!e||e.length===0?"$default_instance":e).toLowerCase()
-    ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
-    }return n._iq[e]};e.amplitude=n})(window,document);
+    <script type="text/javascript">
+        (function (e, t) {
+            var n = e.amplitude || { _q: [], _iq: {} }; var r = t.createElement("script")
+                ; r.type = "text/javascript"
+                ; r.integrity = "sha384-w57H696k8B7565i8d53066385413158485208632616428766150244431015684"
+                ; r.crossOrigin = "anonymous"; r.async = true
+                ; r.src = "https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"
+                ; r.onload = function () {
+                    if (!e.amplitude.runQueuedFunctions) {
+                        console.log("[Amplitude] Error: could not load SDK")
+                    }
+                }
+                ; var i = t.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i)
+                ; function s(e, t) {
+                    e.prototype[t] = function () {
+                        this._q.push({ name: t, args: Array.prototype.slice.call(arguments, 0) }); return this
+                    }
+                }
+            var o = function () { this._q = []; return this }
+                ; var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove"]
+                ; for (var c = 0; c < a.length; c++) { s(o, a[c]) } n.Identify = o; var u = function () {
+                    this._q = []
+                    ; return this
+                }; var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"]
+                ; for (var p = 0; p < l.length; p++) { s(u, l[p]) } n.Revenue = u
+                ; var d = ["init", "logEvent", "logRevenue", "setUserId", "setUserProperties", "setOptOut", "setVersionName", "setDomain", "setDeviceId", "enableTracking", "setGlobalUserProperties", "identify", "clearUserProperties", "setGroup", "logRevenueV2", "regenerateDeviceId", "logEventWithTimestamp", "logEventWithGroups", "setSessionId", "resetSessionId"]
+                ; function v(e) {
+                    function t(t) {
+                        e[t] = function () {
+                            e._q.push({ name: t, args: Array.prototype.slice.call(arguments, 0) })
+                        }
+                    }
+                    for (var n = 0; n < d.length; n++) { t(d[n]) }
+                } v(n); n.getInstance = function (e) {
+                    e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase()
+                        ; if (!Object.prototype.hasOwnProperty.call(n._iq, e)) {
+                            n._iq[e] = { _q: [] }; v(n._iq[e])
+                        } return n._iq[e]
+                }; e.amplitude = n
+        })(window, document);
 
-    amplitude.init('780dee86987931d467efe52142faed13');
-    amplitude.logEvent('Page Viewed', {
-      page_title: document.title,
-      page_url: window.location.href,
-      page_path: window.location.pathname
-    });
-  </script>
+        amplitude.init('780dee86987931d467efe52142faed13');
+        amplitude.logEvent('Page Viewed', {
+            page_title: document.title,
+            page_url: window.location.href,
+            page_path: window.location.pathname
+        });
+    </script>
     <title>Terms & Conditions - Lingowire</title>
     <meta name="description"
         content="Lingowire Terms & Conditions. Community-first principles for a respectful, safe, and fair platform.">
@@ -455,7 +472,7 @@
                 <li><strong>Be respectful:</strong> no harassment, hate speech, or harmful content.</li>
                 <li><strong>Authentic participation:</strong> no bots, spam, impersonation, or scraping.</li>
                 <li><strong>Safety first:</strong> report issues to <a
-                        href="mailto:support@lingowire.com">support@lingowire.com</a>.</li>
+                        href="mailto:hello@lingowire.com">hello@lingowire.com</a>.</li>
             </ul>
         </section>
 
@@ -497,7 +514,7 @@
         <section class="policy-section">
             <h2>Contact</h2>
             <div class="contact-box">
-                <p>Questions about these terms? Email <a href="mailto:support@lingowire.com">support@lingowire.com</a>
+                <p>Questions about these terms? Email <a href="mailto:hello@lingowire.com">hello@lingowire.com</a>
                 </p>
             </div>
         </section>
@@ -560,10 +577,10 @@
     </footer>
 
     <script>
-            const nav = document.getElementById('nav');
-            window.addEventListener('scroll', () => {
-                nav.classList.toggle('scrolled', window.scrollY > 20);
-            });
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
     </script>
 
 </body>
