@@ -26,7 +26,7 @@
                 ; var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove"]
                 ; for (var c = 0; c < a.length; c++) { s(o, a[c]) } n.Identify = o; var u = function () {
                     this._q = []
-                    ; return this
+                        ; return this
                 }; var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"]
                 ; for (var p = 0; p < l.length; p++) { s(u, l[p]) } n.Revenue = u
                 ; var d = ["init", "logEvent", "logRevenue", "setUserId", "setUserProperties", "setOptOut", "setVersionName", "setDomain", "setDeviceId", "enableTracking", "setGlobalUserProperties", "identify", "clearUserProperties", "setGroup", "logRevenueV2", "regenerateDeviceId", "logEventWithTimestamp", "logEventWithGroups", "setSessionId", "resetSessionId"]
@@ -622,7 +622,7 @@
 
         <section class="contact-section">
             <h2>Send us a message</h2>
-            <form class="contact-form" action="#" method="POST" enctype="multipart/form-data">
+            <form id="contactForm" class="contact-form" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -763,6 +763,46 @@
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 20);
         });
+
+        // Handle Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const submitBtn = contactForm.querySelector('.form-submit');
+                const originalText = submitBtn.textContent;
+
+                // Show loading state
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+
+                try {
+                    const formData = new FormData(contactForm);
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Your message has been sent successfully!');
+                        contactForm.reset();
+                    } else {
+                        alert('Error sending message: ' + (result.error || 'Please try again.'));
+                    }
+                } catch (err) {
+                    alert('An unexpected error occurred. Please try again later.');
+                } finally {
+                    // Revert button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                }
+            });
+        }
     </script>
 
 </body>
