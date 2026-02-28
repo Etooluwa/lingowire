@@ -1,3748 +1,3473 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript">
-      (function (e, t) {
-        var n = e.amplitude || { _q: [], _iq: {} };
-        var r = t.createElement("script");
-        r.type = "text/javascript";
-        r.integrity =
-          "sha384-w57H696k8B7565i8d53066385413158485208632616428766150244431015684";
-        r.crossOrigin = "anonymous";
-        r.async = true;
-        r.src =
-          "https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz";
-        r.onload = function () {
-          if (!e.amplitude.runQueuedFunctions) {
-            console.log("[Amplitude] Error: could not load SDK");
-          }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="text/javascript">
+    (function (e, t) {
+      var n = e.amplitude || { _q: [], _iq: {} };
+      var r = t.createElement("script");
+      r.type = "text/javascript";
+      r.integrity =
+        "sha384-w57H696k8B7565i8d53066385413158485208632616428766150244431015684";
+      r.crossOrigin = "anonymous";
+      r.async = true;
+      r.src =
+        "https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz";
+      r.onload = function () {
+        if (!e.amplitude.runQueuedFunctions) {
+          console.log("[Amplitude] Error: could not load SDK");
+        }
+      };
+      var i = t.getElementsByTagName("script")[0];
+      i.parentNode.insertBefore(r, i);
+      function s(e, t) {
+        e.prototype[t] = function () {
+          this._q.push({
+            name: t,
+            args: Array.prototype.slice.call(arguments, 0),
+          });
+          return this;
         };
-        var i = t.getElementsByTagName("script")[0];
-        i.parentNode.insertBefore(r, i);
-        function s(e, t) {
-          e.prototype[t] = function () {
-            this._q.push({
+      }
+      var o = function () {
+        this._q = [];
+        return this;
+      };
+      var a = [
+        "add",
+        "append",
+        "clearAll",
+        "prepend",
+        "set",
+        "setOnce",
+        "unset",
+        "preInsert",
+        "postInsert",
+        "remove",
+      ];
+      for (var c = 0; c < a.length; c++) {
+        s(o, a[c]);
+      }
+      n.Identify = o;
+      var u = function () {
+        this._q = [];
+        return this;
+      };
+      var l = [
+        "setProductId",
+        "setQuantity",
+        "setPrice",
+        "setRevenueType",
+        "setEventProperties",
+      ];
+      for (var p = 0; p < l.length; p++) {
+        s(u, l[p]);
+      }
+      n.Revenue = u;
+      var d = [
+        "init",
+        "logEvent",
+        "logRevenue",
+        "setUserId",
+        "setUserProperties",
+        "setOptOut",
+        "setVersionName",
+        "setDomain",
+        "setDeviceId",
+        "enableTracking",
+        "setGlobalUserProperties",
+        "identify",
+        "clearUserProperties",
+        "setGroup",
+        "logRevenueV2",
+        "regenerateDeviceId",
+        "logEventWithTimestamp",
+        "logEventWithGroups",
+        "setSessionId",
+        "resetSessionId",
+      ];
+      function v(e) {
+        function t(t) {
+          e[t] = function () {
+            e._q.push({
               name: t,
               args: Array.prototype.slice.call(arguments, 0),
             });
-            return this;
           };
         }
-        var o = function () {
-          this._q = [];
-          return this;
-        };
-        var a = [
-          "add",
-          "append",
-          "clearAll",
-          "prepend",
-          "set",
-          "setOnce",
-          "unset",
-          "preInsert",
-          "postInsert",
-          "remove",
-        ];
-        for (var c = 0; c < a.length; c++) {
-          s(o, a[c]);
+        for (var n = 0; n < d.length; n++) {
+          t(d[n]);
         }
-        n.Identify = o;
-        var u = function () {
-          this._q = [];
-          return this;
-        };
-        var l = [
-          "setProductId",
-          "setQuantity",
-          "setPrice",
-          "setRevenueType",
-          "setEventProperties",
-        ];
-        for (var p = 0; p < l.length; p++) {
-          s(u, l[p]);
+      }
+      v(n);
+      n.getInstance = function (e) {
+        e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase();
+        if (!Object.prototype.hasOwnProperty.call(n._iq, e)) {
+          n._iq[e] = { _q: [] };
+          v(n._iq[e]);
         }
-        n.Revenue = u;
-        var d = [
-          "init",
-          "logEvent",
-          "logRevenue",
-          "setUserId",
-          "setUserProperties",
-          "setOptOut",
-          "setVersionName",
-          "setDomain",
-          "setDeviceId",
-          "enableTracking",
-          "setGlobalUserProperties",
-          "identify",
-          "clearUserProperties",
-          "setGroup",
-          "logRevenueV2",
-          "regenerateDeviceId",
-          "logEventWithTimestamp",
-          "logEventWithGroups",
-          "setSessionId",
-          "resetSessionId",
-        ];
-        function v(e) {
-          function t(t) {
-            e[t] = function () {
-              e._q.push({
-                name: t,
-                args: Array.prototype.slice.call(arguments, 0),
-              });
-            };
-          }
-          for (var n = 0; n < d.length; n++) {
-            t(d[n]);
-          }
-        }
-        v(n);
-        n.getInstance = function (e) {
-          e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase();
-          if (!Object.prototype.hasOwnProperty.call(n._iq, e)) {
-            n._iq[e] = { _q: [] };
-            v(n._iq[e]);
-          }
-          return n._iq[e];
-        };
-        e.amplitude = n;
-      })(window, document);
+        return n._iq[e];
+      };
+      e.amplitude = n;
+    })(window, document);
 
-      amplitude.init("780dee86987931d467efe52142faed13");
-      amplitude.logEvent("Page Viewed", {
-        page_title: document.title,
-        page_url: window.location.href,
-        page_path: window.location.pathname,
-      });
-    </script>
-    <title>Lingowire - Real conversation practice for any language.</title>
-    <meta
-      property="og:title"
-      content="Real conversation practice for any language."
-    />
-    <meta
-      property="og:description"
-      content="Find conversation partners, practice consistently, and build real fluency in any language."
-    />
-    <meta
-      property="og:image"
-      content="https://lingowire.com/assets/images/4.png"
-    />
-    <meta property="og:url" content="https://lingowire.com" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" type="image/png" href="assets/images/6.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    amplitude.init("780dee86987931d467efe52142faed13");
+    amplitude.logEvent("Page Viewed", {
+      page_title: document.title,
+      page_url: window.location.href,
+      page_path: window.location.pathname,
+    });
+  </script>
+  <title>Lingowire - Real conversation practice for any language.</title>
+  <meta property="og:title" content="Real conversation practice for any language." />
+  <meta property="og:description"
+    content="Find conversation partners, practice consistently, and build real fluency in any language." />
+  <meta property="og:image" content="https://lingowire.com/assets/images/4.png" />
+  <meta property="og:url" content="https://lingowire.com" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="assets/images/6.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      :root {
-        --clr-primary: #1e3a8a;
-        --clr-primary-light: #2b4fa8;
-        --clr-primary-dark: #152c6b;
-        --clr-accent: #42b4e6;
-        --clr-accent-coral: #5bc0eb;
-        --clr-bg: #fafbff;
-        --clr-surface: #ffffff;
-        --clr-surface-warm: #edf2fa;
-        --clr-text: #1a1a1a;
-        --clr-text-muted: #6b6b6b;
-        --clr-text-light: #9a9a9a;
-        --clr-border: #dee5f0;
-        --font-display: "Fraunces", serif;
-        --font-body: "DM Sans", sans-serif;
-        --radius-sm: 8px;
-        --radius-md: 14px;
-        --radius-lg: 22px;
-        --radius-xl: 32px;
-        --shadow-sm:
-          0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-        --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
-        --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
-        --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
-      }
+    :root {
+      --clr-primary: #1e3a8a;
+      --clr-primary-light: #2b4fa8;
+      --clr-primary-dark: #152c6b;
+      --clr-accent: #42b4e6;
+      --clr-accent-coral: #5bc0eb;
+      --clr-bg: #fafbff;
+      --clr-surface: #ffffff;
+      --clr-surface-warm: #edf2fa;
+      --clr-text: #1a1a1a;
+      --clr-text-muted: #6b6b6b;
+      --clr-text-light: #9a9a9a;
+      --clr-border: #dee5f0;
+      --font-display: "Fraunces", serif;
+      --font-body: "DM Sans", sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-xl: 32px;
+      --shadow-sm:
+        0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
 
-      html {
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-        touch-action: pan-y pinch-zoom;
-      }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      touch-action: pan-y pinch-zoom;
+    }
 
-      body {
-        font-family: var(--font-body);
-        background: var(--clr-bg);
-        color: var(--clr-text);
-        line-height: 1.6;
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-        position: relative;
-        touch-action: pan-y pinch-zoom;
-        -webkit-font-smoothing: antialiased;
-      }
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+      touch-action: pan-y pinch-zoom;
+      -webkit-font-smoothing: antialiased;
+    }
 
-      /* ─── NAV ─── */
-      .nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        background: rgba(250, 250, 247, 0.85);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--clr-border);
-        transition: box-shadow 0.3s;
-      }
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 250, 247, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--clr-border);
+      transition: box-shadow 0.3s;
+    }
 
-      .nav.scrolled {
-        box-shadow: var(--shadow-md);
-      }
+    .nav.scrolled {
+      box-shadow: var(--shadow-md);
+    }
 
-      .nav-inner {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 0 32px;
-        height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-      .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: var(--clr-primary);
-      }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--clr-primary);
+    }
 
-      .nav-logo svg {
-        width: 34px;
-        height: 34px;
-      }
+    .nav-logo svg {
+      width: 34px;
+      height: 34px;
+    }
 
-      .nav-logo span {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.35rem;
-        letter-spacing: -0.02em;
-      }
+    .nav-logo span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
 
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 36px;
-      }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
 
-      .nav-links a {
-        text-decoration: none;
-        color: var(--clr-text-muted);
-        font-size: 0.92rem;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--clr-text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
 
-      .nav-links a:hover {
-        color: var(--clr-text);
-      }
+    .nav-links a:hover {
+      color: var(--clr-text);
+    }
 
-      .nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-      .download-dropdown {
-        position: relative;
-      }
+    .download-dropdown {
+      position: relative;
+    }
 
-      .download-dropdown .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        margin-top: 8px;
-        background: var(--clr-surface);
-        border: 1px solid var(--clr-border);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-lg);
-        padding: 8px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-8px);
-        transition: all 0.25s ease;
-        min-width: 200px;
-        z-index: 1000;
-      }
+    .download-dropdown .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 8px;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.25s ease;
+      min-width: 200px;
+      z-index: 1000;
+    }
 
-      .download-dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
+    .download-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--clr-surface-warm);
+    }
+
+    .dropdown-menu a svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.92rem;
+    }
+
+    .btn-ghost {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      color: var(--clr-text);
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-primary {
+      padding: 11px 26px;
+      border-radius: var(--radius-xl);
+      color: #fff;
+      background: var(--clr-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--clr-primary-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(30, 58, 138, 0.25);
+    }
+
+    .btn-large {
+      padding: 16px 36px;
+      font-size: 1.05rem;
+      border-radius: var(--radius-xl);
+    }
+
+    .btn-accent {
+      background: var(--clr-accent);
+      color: var(--clr-primary-dark);
+    }
+
+    .btn-accent:hover {
+      background: #5bc0eb;
+      box-shadow: 0 4px 16px rgba(66, 180, 230, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 80px 32px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      min-height: 85vh;
+    }
+
+    .hero-content {
+      max-width: 540px;
+    }
+
+    .hero-badge {
+      display: none;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3.2rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #7c4dff;
+      font-weight: 800;
+      position: relative;
+    }
+
+    .hero h1 em::after {
+      display: none;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-stats {
+      display: none;
+    }
+
+    /* ─── HERO VISUAL (ORBIT) ─── */
+    .hero-visual {
+      position: relative;
+      height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    /* Central Phone */
+    .phone-mockup {
+      width: 280px;
+      z-index: 10;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+      animation: float-phone 6s ease-in-out infinite;
+    }
+
+    .phone-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 40px;
+      /* Adjusting for typical iphone corners if image is screenshot */
+    }
+
+    @keyframes float-phone {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
 
-      .dropdown-menu a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
-        border-radius: var(--radius-md);
-        text-decoration: none;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: var(--clr-text);
-        transition: background 0.2s;
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Orbit System */
+    .orbit-system {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      /* border: 1px dashed rgba(0,0,0,0.05); Optional: show track */
+      animation: orbit-spin 40s linear infinite;
+      z-index: 1;
+    }
+
+    .orbit-item {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bubble-content {
+      background: #fff;
+      padding: 12px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: orbit-counter-spin 40s linear infinite;
+    }
+
+    .bubble-content img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Bubble Variants */
+    .bubble-primary {
+      background: #7c4dff;
+      color: #fff;
+    }
+
+    .bubble-accent {
+      background: #00c853;
+      color: #fff;
+    }
+
+    .bubble-warn {
+      background: #ffd740;
+      color: #1a1a1a;
+    }
+
+    /* Animations */
+    @keyframes orbit-spin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
 
-      .dropdown-menu a:hover {
-        background: var(--clr-surface-warm);
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes orbit-counter-spin {
+      from {
+        transform: rotate(0deg);
       }
 
-      .dropdown-menu a svg {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
+      to {
+        transform: rotate(-360deg);
       }
+    }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-body);
-        font-weight: 600;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        font-size: 0.92rem;
-      }
-
-      .btn-ghost {
-        padding: 10px 20px;
-        border-radius: var(--radius-sm);
-        color: var(--clr-text);
-        background: transparent;
-      }
-
-      .btn-ghost:hover {
-        background: rgba(0, 0, 0, 0.04);
-      }
-
-      .btn-primary {
-        padding: 11px 26px;
-        border-radius: var(--radius-xl);
-        color: #fff;
-        background: var(--clr-primary);
-      }
-
-      .btn-primary:hover {
-        background: var(--clr-primary-light);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(30, 58, 138, 0.25);
-      }
-
-      .btn-large {
-        padding: 16px 36px;
-        font-size: 1.05rem;
-        border-radius: var(--radius-xl);
-      }
-
-      .btn-accent {
-        background: var(--clr-accent);
-        color: var(--clr-primary-dark);
-      }
-
-      .btn-accent:hover {
-        background: #5bc0eb;
-        box-shadow: 0 4px 16px rgba(66, 180, 230, 0.3);
-        transform: translateY(-1px);
-      }
-
-      /* ─── HERO ─── */
+    /* Responsive */
+    @media (max-width: 1024px) {
       .hero {
-        padding: 80px 32px 60px;
-        max-width: 1240px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        min-height: 85vh;
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 100px;
       }
 
       .hero-content {
-        max-width: 540px;
-      }
-
-      .hero-badge {
-        display: none;
-      }
-
-      .hero h1 {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: clamp(3.2rem, 5vw, 4.5rem);
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        color: #1a1a1a;
-        margin-bottom: 24px;
-      }
-
-      .hero h1 em {
-        font-style: normal;
-        color: #7c4dff;
-        font-weight: 800;
-        position: relative;
-      }
-
-      .hero h1 em::after {
-        display: none;
-      }
-
-      .hero-sub {
-        font-size: 1.15rem;
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 40px;
-        max-width: 480px;
+        margin: 0 auto;
       }
 
       .hero-cta {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 48px;
-        position: relative;
-        z-index: 10;
-      }
-
-      .hero-stats {
-        display: none;
-      }
-
-      /* ─── HERO VISUAL (ORBIT) ─── */
-      .hero-visual {
-        position: relative;
-        height: 650px;
-        display: flex;
-        align-items: center;
         justify-content: center;
-        overflow: visible;
       }
 
-      /* Central Phone */
-      .phone-mockup {
-        width: 280px;
-        z-index: 10;
-        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
-        animation: float-phone 6s ease-in-out infinite;
+      .hero-visual {
+        height: 500px;
+        margin-top: 40px;
       }
 
-      .phone-mockup img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 40px;
-        /* Adjusting for typical iphone corners if image is screenshot */
-      }
-
-      @keyframes float-phone {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(-15px);
-        }
-      }
-
-      /* Orbit System */
       .orbit-system {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 650px;
-        height: 650px;
-        border-radius: 50%;
-        /* border: 1px dashed rgba(0,0,0,0.05); Optional: show track */
-        animation: orbit-spin 40s linear infinite;
-        z-index: 1;
+        width: 500px;
+        height: 500px;
       }
 
-      .orbit-item {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .bubble-content {
-        background: #fff;
-        padding: 12px 20px;
-        border-radius: 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #1a1a1a;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        animation: orbit-counter-spin 40s linear infinite;
-      }
-
-      .bubble-content img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      /* Bubble Variants */
-      .bubble-primary {
-        background: #7c4dff;
-        color: #fff;
-      }
-
-      .bubble-accent {
-        background: #00c853;
-        color: #fff;
-      }
-
-      .bubble-warn {
-        background: #ffd740;
-        color: #1a1a1a;
-      }
-
-      /* Animations */
-      @keyframes orbit-spin {
-        from {
-          transform: translate(-50%, -50%) rotate(0deg);
-        }
-
-        to {
-          transform: translate(-50%, -50%) rotate(360deg);
-        }
-      }
-
-      @keyframes orbit-counter-spin {
-        from {
-          transform: rotate(0deg);
-        }
-
-        to {
-          transform: rotate(-360deg);
-        }
-      }
-
-      /* Responsive */
-      @media (max-width: 1024px) {
-        .hero {
-          grid-template-columns: 1fr;
-          text-align: center;
-          padding-top: 100px;
-        }
-
-        .hero-content {
-          margin: 0 auto;
-        }
-
-        .hero-cta {
-          justify-content: center;
-        }
-
-        .hero-visual {
-          height: 500px;
-          margin-top: 40px;
-        }
-
-        .orbit-system {
-          width: 500px;
-          height: 500px;
-        }
-
-        .phone-mockup {
-          width: 220px;
-        }
-
-        .hero-sub {
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-      .cb-3 {
-        bottom: 35%;
-        left: -10%;
-        animation-delay: 3.5s;
-      }
-
-      .cb-4 {
-        top: -5%;
-        right: 15%;
-        animation-delay: 1.2s;
-      }
-
-      .cb-5 {
-        bottom: 10%;
-        left: 40%;
-        animation-delay: 4.5s;
-        z-index: 5;
-      }
-
-      /* Existing Float Card Styles overrides if needed */
-
-      .hero-content {
-        max-width: 560px;
-      }
-
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 16px 6px 8px;
-        background: var(--clr-surface);
-        border: 1px solid var(--clr-border);
-        border-radius: var(--radius-xl);
-        font-size: 0.82rem;
-        font-weight: 500;
-        color: var(--clr-text-muted);
-        margin-bottom: 28px;
-        animation: fadeInUp 0.6s ease both;
-      }
-
-      .hero-badge-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #22c55e;
-        animation: pulse-dot 2s infinite;
-      }
-
-      @keyframes pulse-dot {
-        0%,
-        100% {
-          opacity: 1;
-        }
-
-        50% {
-          opacity: 0.4;
-        }
-      }
-
-      .hero h1 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(2.8rem, 5vw, 3.8rem);
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        color: var(--clr-primary-dark);
-        margin-bottom: 24px;
-        animation: fadeInUp 0.6s 0.1s ease both;
-      }
-
-      .hero h1 em {
-        font-style: italic;
-        color: var(--clr-primary);
-        position: relative;
-      }
-
-      .hero h1 em::after {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: var(--clr-accent);
-        border-radius: 3px;
-        opacity: 0.5;
-        transform: skewX(-6deg);
+      .phone-mockup {
+        width: 220px;
       }
 
       .hero-sub {
-        font-size: 1.15rem;
-        color: var(--clr-text-muted);
-        line-height: 1.7;
-        margin-bottom: 36px;
-        max-width: 460px;
-        animation: fadeInUp 0.6s 0.2s ease both;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .cb-3 {
+      bottom: 35%;
+      left: -10%;
+      animation-delay: 3.5s;
+    }
+
+    .cb-4 {
+      top: -5%;
+      right: 15%;
+      animation-delay: 1.2s;
+    }
+
+    .cb-5 {
+      bottom: 10%;
+      left: 40%;
+      animation-delay: 4.5s;
+      z-index: 5;
+    }
+
+    /* Existing Float Card Styles overrides if needed */
+
+    .hero-content {
+      max-width: 560px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 6px 8px;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--clr-text-muted);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
       }
 
-      .hero-cta {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 48px;
-        animation: fadeInUp 0.6s 0.3s ease both;
+      50% {
+        opacity: 0.4;
       }
+    }
 
-      .hero-stats {
-        display: flex;
-        gap: 40px;
-        animation: fadeInUp 0.6s 0.4s ease both;
-      }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--clr-primary-dark);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s 0.1s ease both;
+    }
 
-      .hero-stat-num {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.6rem;
-        color: var(--clr-primary-dark);
-        letter-spacing: -0.02em;
-      }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--clr-primary);
+      position: relative;
+    }
 
-      .hero-stat-label {
-        font-size: 0.82rem;
-        color: var(--clr-text-light);
-        margin-top: 2px;
-      }
+    .hero h1 em::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--clr-accent);
+      border-radius: 3px;
+      opacity: 0.5;
+      transform: skewX(-6deg);
+    }
 
-      /* hero visual */
-      .hero-visual {
-        position: relative;
-        animation: fadeInUp 0.8s 0.2s ease both;
-      }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 460px;
+      animation: fadeInUp 0.6s 0.2s ease both;
+    }
 
-      .hero-visual-main {
-        width: 100%;
-        aspect-ratio: 1;
-        background: linear-gradient(
-          145deg,
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      animation: fadeInUp 0.6s 0.3s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      animation: fadeInUp 0.6s 0.4s ease both;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--clr-primary-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stat-label {
+      font-size: 0.82rem;
+      color: var(--clr-text-light);
+      margin-top: 2px;
+    }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+      animation: fadeInUp 0.8s 0.2s ease both;
+    }
+
+    .hero-visual-main {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(145deg,
           var(--clr-surface-warm) 0%,
-          #e8dfd3 100%
-        );
-        border-radius: var(--radius-xl);
-        position: relative;
-        overflow: hidden;
+          #e8dfd3 100%);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-globe {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-globe svg {
+      width: 80%;
+      height: 80%;
+      opacity: 0.08;
+    }
+
+    /* floating cards */
+    .float-card {
+      position: absolute;
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: 16px 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .float-card-1 {
+      top: 12%;
+      right: -20px;
+      animation-delay: 0s;
+    }
+
+    .float-card-2 {
+      bottom: 20%;
+      left: -30px;
+      animation-delay: 1s;
+    }
+
+    .float-card-3 {
+      bottom: 8%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      .hero-globe {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      50% {
+        transform: translateY(-10px);
       }
+    }
 
-      .hero-globe svg {
-        width: 80%;
-        height: 80%;
-        opacity: 0.08;
-      }
+    .fc-flag {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
 
-      /* floating cards */
-      .float-card {
-        position: absolute;
-        background: var(--clr-surface);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-lg);
-        padding: 16px 20px;
-        animation: float 4s ease-in-out infinite;
-      }
+    .fc-text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-text);
+    }
 
-      .float-card-1 {
-        top: 12%;
-        right: -20px;
-        animation-delay: 0s;
-      }
+    .fc-sub {
+      font-size: 0.75rem;
+      color: var(--clr-text-light);
+    }
 
-      .float-card-2 {
-        bottom: 20%;
-        left: -30px;
-        animation-delay: 1s;
-      }
+    .fc-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-      .float-card-3 {
-        bottom: 8%;
-        right: 10%;
-        animation-delay: 2s;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .fc-flag {
-        font-size: 1.6rem;
-        margin-bottom: 6px;
-      }
-
-      .fc-text {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--clr-text);
-      }
-
-      .fc-sub {
-        font-size: 0.75rem;
-        color: var(--clr-text-light);
-      }
-
-      .fc-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .fc-avatar {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: linear-gradient(
-          135deg,
+    .fc-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,
           var(--clr-primary),
-          var(--clr-primary-light)
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 0.75rem;
-        font-weight: 700;
+          var(--clr-primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .fc-stars {
+      color: var(--clr-accent);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+    }
+
+    /* language pills (horizontally scrolling) */
+    .lang-pill-row {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ─── LANGUAGES GLOBE ─── */
+    .lang-globe-section {
+      padding: 80px 32px;
+      max-width: 1240px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .lang-globe-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .lang-globe-label {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--clr-text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .lang-globe-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 450px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .earth-backdrop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: none;
+      z-index: 0;
+    }
+
+    @keyframes slowSpin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
 
-      .fc-stars {
-        color: var(--clr-accent);
-        font-size: 0.7rem;
-        letter-spacing: 1px;
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
       }
+    }
 
-      /* language pills (horizontally scrolling) */
-      .lang-pill-row {
-        position: absolute;
-        bottom: -14px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-      }
+    .earth-backdrop::before {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px dashed rgba(30, 58, 138, 0.1);
+      animation: slowSpin 30s linear infinite;
+    }
 
-      .lang-pill {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        background: var(--clr-surface);
-        border: 1px solid var(--clr-border);
-        border-radius: var(--radius-xl);
-        font-size: 0.8rem;
-        font-weight: 500;
-        white-space: nowrap;
-        box-shadow: var(--shadow-sm);
-      }
+    .earth-backdrop::after {
+      content: "";
+      position: absolute;
+      inset: 80px;
+      border-radius: 50%;
+      border: 1px dashed rgba(30, 58, 138, 0.15);
+      animation: slowSpin 40s linear infinite reverse;
+    }
 
-      /* ─── LANGUAGES GLOBE ─── */
-      .lang-globe-section {
-        padding: 80px 32px;
-        max-width: 1240px;
-        margin: 0 auto;
-        overflow: hidden;
-      }
+    .lang-globe-cloud {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
 
-      .lang-globe-header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+    .tagcloud {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--clr-text);
+      font-size: 1.05rem;
+      cursor: pointer;
+      margin: 0 auto;
+    }
 
-      .lang-globe-label {
-        text-align: center;
-        font-size: 0.82rem;
-        color: var(--clr-text-light);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 12px;
-      }
+    .tagcloud--item {
+      background: var(--clr-surface);
+      padding: 8px 16px;
+      border-radius: 30px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--clr-border);
+      transition: all 0.25s ease !important;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
+    .tagcloud--item:hover {
+      color: #fff !important;
+      background: var(--clr-primary) !important;
+      border-color: var(--clr-primary) !important;
+      box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2) !important;
+      z-index: 100 !important;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
       .lang-globe-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        height: 450px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 380px;
       }
 
       .earth-backdrop {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        background: transparent;
-        box-shadow: none;
-        z-index: 0;
-      }
-
-      @keyframes slowSpin {
-        from {
-          transform: translate(-50%, -50%) rotate(0deg);
-        }
-
-        to {
-          transform: translate(-50%, -50%) rotate(360deg);
-        }
+        width: 240px;
+        height: 240px;
       }
 
       .earth-backdrop::before {
-        content: "";
-        position: absolute;
-        inset: 40px;
-        border-radius: 50%;
-        border: 1px dashed rgba(30, 58, 138, 0.1);
-        animation: slowSpin 30s linear infinite;
+        inset: 30px;
       }
 
       .earth-backdrop::after {
-        content: "";
-        position: absolute;
-        inset: 80px;
-        border-radius: 50%;
-        border: 1px dashed rgba(30, 58, 138, 0.15);
-        animation: slowSpin 40s linear infinite reverse;
-      }
-
-      .lang-globe-cloud {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
+        inset: 60px;
       }
 
       .tagcloud {
-        font-family: var(--font-body);
-        font-weight: 600;
-        color: var(--clr-text);
-        font-size: 1.05rem;
-        cursor: pointer;
-        margin: 0 auto;
+        font-size: 0.95rem;
       }
+    }
 
-      .tagcloud--item {
-        background: var(--clr-surface);
-        padding: 8px 16px;
-        border-radius: 30px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-        border: 1px solid var(--clr-border);
-        transition: all 0.25s ease !important;
-        white-space: nowrap;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding: 100px 32px;
+      max-width: 1240px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-      .tagcloud--item:hover {
-        color: #fff !important;
-        background: var(--clr-primary) !important;
-        border-color: var(--clr-primary) !important;
-        box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2) !important;
-        z-index: 100 !important;
-        transform: scale(1.1);
-      }
+    .how .section-eyebrow {
+      justify-content: center;
+    }
 
-      @media (max-width: 768px) {
-        .lang-globe-wrapper {
-          height: 380px;
-        }
+    .how .section-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .earth-backdrop {
-          width: 240px;
-          height: 240px;
-        }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--clr-primary);
+      margin-bottom: 16px;
+    }
 
-        .earth-backdrop::before {
-          inset: 30px;
-        }
+    .section-eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 2px;
+      background: var(--clr-primary);
+      border-radius: 1px;
+    }
 
-        .earth-backdrop::after {
-          inset: 60px;
-        }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 3.5vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--clr-primary-dark);
+      margin-bottom: 16px;
+    }
 
-        .tagcloud {
-          font-size: 0.95rem;
-        }
-      }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--clr-text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 60px;
+    }
 
-      /* ─── HOW IT WORKS ─── */
-      .how {
-        padding: 100px 32px;
-        max-width: 1240px;
-        margin: 0 auto;
-        text-align: center;
-      }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
-      .how .section-eyebrow {
-        justify-content: center;
-      }
+    .how-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-      .how .section-sub {
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .how-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
 
-      .section-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--clr-primary);
-        margin-bottom: 16px;
-      }
+    .how-card-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 3.5rem;
+      color: var(--clr-primary);
+      opacity: 0.1;
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      line-height: 1;
+    }
 
-      .section-eyebrow::before {
-        content: "";
-        width: 20px;
-        height: 2px;
-        background: var(--clr-primary);
-        border-radius: 1px;
-      }
-
-      .section-title {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(2rem, 3.5vw, 2.6rem);
-        line-height: 1.15;
-        letter-spacing: -0.02em;
-        color: var(--clr-primary-dark);
-        margin-bottom: 16px;
-      }
-
-      .section-sub {
-        font-size: 1.05rem;
-        color: var(--clr-text-muted);
-        max-width: 520px;
-        line-height: 1.7;
-        margin-bottom: 60px;
-      }
-
-      .how-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-
-      .how-card {
-        background: var(--clr-surface);
-        border: 1px solid var(--clr-border);
-        border-radius: var(--radius-lg);
-        padding: 40px 32px;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .how-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        border-color: transparent;
-      }
-
-      .how-card-num {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 3.5rem;
-        color: var(--clr-primary);
-        opacity: 0.1;
-        position: absolute;
-        top: 16px;
-        right: 24px;
-        line-height: 1;
-      }
-
-      .how-card-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: var(--radius-md);
-        background: linear-gradient(
-          135deg,
+    .how-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg,
           var(--clr-primary),
-          var(--clr-primary-light)
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 24px;
-      }
+          var(--clr-primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
 
-      .how-card-icon svg {
-        width: 24px;
-        height: 24px;
-        color: #fff;
-      }
+    .how-card-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #fff;
+    }
 
-      .how-card h3 {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 1.25rem;
-        margin-bottom: 12px;
-        color: var(--clr-primary-dark);
-      }
+    .how-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: var(--clr-primary-dark);
+    }
 
-      .how-card p {
-        font-size: 0.92rem;
-        color: var(--clr-text-muted);
-        line-height: 1.7;
-      }
+    .how-card p {
+      font-size: 0.92rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+    }
 
-      /* ─── FEATURES ─── */
-      .features {
-        padding: 60px 32px 100px;
-        max-width: 1240px;
-        margin: 0 auto;
-        text-align: center;
-      }
+    /* ─── FEATURES ─── */
+    .features {
+      padding: 60px 32px 100px;
+      max-width: 1240px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-      .features .section-eyebrow {
-        justify-content: center;
-      }
+    .features .section-eyebrow {
+      justify-content: center;
+    }
 
-      .features .section-sub {
-        margin-bottom: 24px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .features .section-sub {
+      margin-bottom: 24px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-      .feature-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-        margin-bottom: 20px;
-      }
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-      .feature-row:nth-child(even) {
-        direction: rtl;
-      }
+    .feature-row:nth-child(even) {
+      direction: rtl;
+    }
 
-      .feature-row:nth-child(even) > * {
-        direction: ltr;
-      }
+    .feature-row:nth-child(even)>* {
+      direction: ltr;
+    }
 
-      .feature-visual {
-        aspect-ratio: auto;
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-        position: relative;
-        max-width: 85%;
-      }
+    .feature-visual {
+      aspect-ratio: auto;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      max-width: 85%;
+    }
 
-      .feature-visual-bg {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    .feature-visual-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .fv-1 {
-        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-      }
+    .fv-1 {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
 
-      .fv-2 {
-        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-      }
+    .fv-2 {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    }
 
-      .fv-3 {
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-      }
+    .fv-3 {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
 
-      /* feature visual inner mockups */
-      .fv-mockup {
-        width: 75%;
-        background: var(--clr-surface);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-xl);
-        padding: 24px;
-      }
+    /* feature visual inner mockups */
+    .fv-mockup {
+      width: 75%;
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      padding: 24px;
+    }
 
-      .fv-mockup-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 20px;
-      }
+    .fv-mockup-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
 
-      .fv-mockup-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #fff;
-      }
+    .fv-mockup-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
 
-      .fv-mockup-name {
-        font-weight: 600;
-        font-size: 0.92rem;
-      }
+    .fv-mockup-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
 
-      .fv-mockup-role {
-        font-size: 0.78rem;
-        color: var(--clr-text-light);
-      }
+    .fv-mockup-role {
+      font-size: 0.78rem;
+      color: var(--clr-text-light);
+    }
 
-      .fv-mockup-body {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+    .fv-mockup-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-      .fv-msg {
-        padding: 12px 16px;
-        border-radius: 14px;
-        font-size: 0.82rem;
-        max-width: 80%;
-        line-height: 1.5;
-      }
+    .fv-msg {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.82rem;
+      max-width: 80%;
+      line-height: 1.5;
+    }
 
-      .fv-msg-in {
-        background: #f0f0f0;
-        color: var(--clr-text);
-        align-self: flex-start;
-        border-bottom-left-radius: 4px;
-      }
+    .fv-msg-in {
+      background: #f0f0f0;
+      color: var(--clr-text);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
 
-      .fv-msg-out {
-        background: var(--clr-primary);
-        color: #fff;
-        align-self: flex-end;
-        border-bottom-right-radius: 4px;
-      }
+    .fv-msg-out {
+      background: var(--clr-primary);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
 
-      /* schedule mockup */
-      .fv-schedule {
-        width: 80%;
-        background: var(--clr-surface);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-xl);
-        padding: 24px;
-      }
+    /* schedule mockup */
+    .fv-schedule {
+      width: 80%;
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      padding: 24px;
+    }
 
-      .fv-sched-title {
-        font-weight: 600;
-        font-size: 0.92rem;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+    .fv-sched-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-      .fv-sched-days {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
+    .fv-sched-days {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
 
-      .fv-sched-day {
-        flex: 1;
-        text-align: center;
-        padding: 10px 6px;
-        border-radius: var(--radius-sm);
-        font-size: 0.72rem;
-        font-weight: 500;
-      }
+    .fv-sched-day {
+      flex: 1;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
 
-      .fv-sched-day.active {
-        background: var(--clr-primary);
-        color: #fff;
-      }
+    .fv-sched-day.active {
+      background: var(--clr-primary);
+      color: #fff;
+    }
 
-      .fv-sched-day span {
-        display: block;
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 2px;
-      }
+    .fv-sched-day span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
 
-      .fv-sched-slots {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
+    .fv-sched-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-      .fv-sched-slot {
-        padding: 12px 16px;
-        border-radius: var(--radius-sm);
-        background: #f5f5f5;
-        font-size: 0.82rem;
-        font-weight: 500;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .fv-sched-slot {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: #f5f5f5;
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .fv-sched-slot.booked {
-        background: rgba(27, 77, 62, 0.08);
-        border-left: 3px solid var(--clr-primary);
-      }
+    .fv-sched-slot.booked {
+      background: rgba(27, 77, 62, 0.08);
+      border-left: 3px solid var(--clr-primary);
+    }
 
-      .fv-slot-badge {
-        font-size: 0.7rem;
-        padding: 3px 10px;
-        border-radius: var(--radius-xl);
-        background: var(--clr-primary);
-        color: #fff;
-        font-weight: 600;
-      }
+    .fv-slot-badge {
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: var(--radius-xl);
+      background: var(--clr-primary);
+      color: #fff;
+      font-weight: 600;
+    }
 
-      /* progress mockup */
-      .fv-progress {
-        width: 80%;
-        background: var(--clr-surface);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-xl);
-        padding: 28px;
-      }
+    /* progress mockup */
+    .fv-progress {
+      width: 80%;
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      padding: 28px;
+    }
 
-      .fv-prog-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 24px;
-      }
+    .fv-prog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
 
-      .fv-prog-header h4 {
-        font-weight: 600;
-        font-size: 0.92rem;
-      }
+    .fv-prog-header h4 {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
 
-      .fv-prog-streak {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--clr-accent);
-      }
+    .fv-prog-streak {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-accent);
+    }
 
-      .fv-prog-bars {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
+    .fv-prog-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-      .fv-prog-bar-label {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8rem;
-        font-weight: 500;
-        margin-bottom: 6px;
-      }
+    .fv-prog-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
 
-      .fv-prog-bar-track {
-        height: 8px;
-        background: #f0f0f0;
-        border-radius: 4px;
-        overflow: hidden;
-      }
+    .fv-prog-bar-track {
+      height: 8px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
 
-      .fv-prog-bar-fill {
-        height: 100%;
-        border-radius: 4px;
-        transition: width 1s ease;
-      }
+    .fv-prog-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
 
-      .feature-content {
-        text-align: left;
-      }
+    .feature-content {
+      text-align: left;
+    }
 
-      .feature-content h3 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(1.5rem, 2.5vw, 2rem);
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-        color: var(--clr-primary-dark);
-        margin-bottom: 16px;
-      }
+    .feature-content h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--clr-primary-dark);
+      margin-bottom: 16px;
+    }
 
-      .feature-content p {
-        font-size: 1rem;
-        color: var(--clr-text-muted);
-        line-height: 1.7;
-        margin-bottom: 28px;
-        max-width: 440px;
-      }
+    .feature-content p {
+      font-size: 1rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
 
-      .feature-checks {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        margin-bottom: 32px;
-      }
+    .feature-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
 
-      .feature-check {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        font-size: 0.92rem;
-        color: var(--clr-text);
-      }
+    .feature-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--clr-text);
+    }
 
-      .feature-check-icon {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: rgba(27, 77, 62, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
+    .feature-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(27, 77, 62, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
 
-      .feature-check-icon svg {
-        width: 12px;
-        height: 12px;
-        color: var(--clr-primary);
-      }
+    .feature-check-icon svg {
+      width: 12px;
+      height: 12px;
+      color: var(--clr-primary);
+    }
 
-      /* ─── TESTIMONIALS ─── */
-      .testimonials {
-        padding: 100px 32px;
-        background: var(--clr-primary-dark);
-        position: relative;
-        overflow: hidden;
-      }
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 100px 32px;
+      background: var(--clr-primary-dark);
+      position: relative;
+      overflow: hidden;
+    }
 
-      .testimonials::before {
-        content: "";
-        position: absolute;
-        top: -200px;
-        right: -200px;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
+    .testimonials::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
           rgba(245, 166, 35, 0.1),
-          transparent
-        );
-      }
-
-      .testimonials .section-eyebrow {
-        color: var(--clr-accent);
-      }
-
-      .testimonials .section-eyebrow::before {
-        background: var(--clr-accent);
-      }
-
-      .testimonials .section-title {
-        color: #fff;
-      }
-
-      .testimonials .section-sub {
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      .test-inner {
-        max-width: 1240px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      .test-inner .section-eyebrow {
-        justify-content: center;
-      }
-
-      .test-inner .section-sub {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .test-carousel-wrap {
-        overflow: hidden;
-        position: relative;
-        margin-top: 48px;
-        margin-left: calc(-50vw + 50%);
-        margin-right: calc(-50vw + 50%);
-        width: 100vw;
-      }
-
-      .test-track {
-        display: flex;
-        gap: 24px;
-        animation: scrollTestimonials 120s linear infinite;
-        width: max-content;
-      }
-
-      .test-track:hover {
-        animation-play-state: paused;
-      }
-
-      @keyframes scrollTestimonials {
-        0% {
-          transform: translateX(0);
-        }
-
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      .test-card {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: var(--radius-lg);
-        padding: 36px;
-        transition: all 0.3s;
-        min-width: 380px;
-        max-width: 380px;
-        flex-shrink: 0;
-      }
-
-      .test-card:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-3px);
-      }
-
-      .test-stars {
-        color: var(--clr-accent);
-        font-size: 0.85rem;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-      }
-
-      .test-quote {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.7;
-        margin-bottom: 28px;
-        font-style: italic;
-      }
-
-      .test-author {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .test-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 0.85rem;
-        color: #fff;
-      }
-
-      .test-name {
-        font-weight: 600;
-        font-size: 0.88rem;
-        color: #fff;
-      }
-
-      .test-info {
-        font-size: 0.78rem;
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      /* ─── PRICING ─── */
-      /* ─── FAQ ─── */
-      .faq-section {
-        padding: 100px 32px;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .faq-section .section-eyebrow,
-      .faq-section .section-title,
-      .faq-section .section-sub {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-      }
-
-      .faq-section .section-eyebrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .faq-list {
-        margin-top: 48px;
-      }
-
-      .faq-item {
-        border-bottom: 1px solid var(--clr-border);
-      }
-
-      .faq-question {
-        width: 100%;
-        background: none;
-        border: none;
-        padding: 24px 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        font-family: var(--font-display);
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--clr-text);
-        text-align: left;
-        line-height: 1.4;
-      }
-
-      .faq-question:hover {
-        color: var(--clr-primary);
-      }
-
-      .faq-icon {
-        width: 24px;
-        height: 24px;
-        flex-shrink: 0;
-        margin-left: 16px;
-        transition: transform 0.3s ease;
-        color: var(--clr-primary);
-      }
-
-      .faq-item.active .faq-icon {
-        transform: rotate(45deg);
-      }
-
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition:
-          max-height 0.35s ease,
-          padding 0.35s ease;
-      }
-
-      .faq-item.active .faq-answer {
-        max-height: 200px;
-      }
-
-      .faq-answer p {
-        padding-bottom: 24px;
-        font-size: 0.95rem;
-        color: var(--clr-text-muted);
-        line-height: 1.7;
-      }
-
-      /* ─── CTA ─── */
-      .cta-section {
-        padding: 100px 32px;
-        max-width: 1240px;
-        margin: 0 auto;
-      }
-
-      .cta-box {
-        background: linear-gradient(
-          135deg,
-          var(--clr-primary) 0%,
-          var(--clr-primary-dark) 100%
-        );
-        border-radius: var(--radius-xl);
-        padding: 80px 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .cta-box::before {
-        content: "";
-        position: absolute;
-        top: -100px;
-        right: -50px;
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(245, 166, 35, 0.15),
-          transparent
-        );
-      }
-
-      .cta-box::after {
-        content: "";
-        position: absolute;
-        bottom: -150px;
-        left: 50px;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.05),
-          transparent
-        );
-      }
-
-      .cta-content {
-        position: relative;
-        z-index: 1;
-        max-width: 520px;
-      }
-
-      .cta-content h2 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(2rem, 3vw, 2.5rem);
-        color: #fff;
-        line-height: 1.2;
-        margin-bottom: 16px;
-      }
-
-      .cta-content p {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1.05rem;
-        line-height: 1.7;
-        margin-bottom: 32px;
-      }
-
-      .cta-actions {
-        position: relative;
-        z-index: 1;
-      }
-
-      .cta-actions .btn-accent {
-        font-size: 1.05rem;
-        padding: 18px 40px;
-      }
-
-      /* ─── FOOTER ─── */
-      .footer {
-        padding: 80px 32px 40px;
-        border-top: 1px solid var(--clr-border);
-        max-width: 1240px;
-        margin: 0 auto;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-        gap: 48px;
-        margin-bottom: 60px;
-      }
-
-      .footer-brand p {
-        font-size: 0.88rem;
-        color: var(--clr-text-muted);
-        line-height: 1.7;
-        margin-top: 16px;
-        max-width: 280px;
-      }
-
-      .footer-social {
-        display: flex;
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .footer-social a {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.04);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--clr-text-muted);
-        transition: all 0.2s;
-        text-decoration: none;
-      }
-
-      .footer-social a:hover {
-        background: var(--clr-primary);
-        color: #fff;
-      }
-
-      .footer-badges {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .store-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #000;
-        color: #fff;
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition:
-          opacity 0.2s,
-          transform 0.2s;
-      }
-
-      .store-badge:hover {
-        opacity: 0.85;
-        transform: translateY(-1px);
-      }
-
-      .store-badge span {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
-
-      .store-badge span small {
-        font-weight: 400;
-        font-size: 0.55rem;
-        letter-spacing: 0.02em;
-        opacity: 0.9;
-      }
-
-      .footer-col h4 {
-        font-weight: 600;
-        font-size: 0.85rem;
-        color: var(--clr-text);
-        margin-bottom: 18px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-
-      .footer-col a {
-        display: block;
-        font-size: 0.88rem;
-        color: var(--clr-text-muted);
-        text-decoration: none;
-        padding: 5px 0;
-        transition: color 0.2s;
-      }
-
-      .footer-col a:hover {
-        color: var(--clr-primary);
-      }
-
-      .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 30px;
-        border-top: 1px solid var(--clr-border);
-        font-size: 0.82rem;
-        color: var(--clr-text-light);
-      }
-
-      .footer-bottom-links {
-        display: flex;
-        gap: 24px;
-      }
-
-      .footer-bottom-links a {
-        color: var(--clr-text-light);
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-
-      .footer-bottom-links a:hover {
-        color: var(--clr-text);
-      }
-
-      /* ─── ANIMATIONS ─── */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(24px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Slide-in animations for feature rows */
-      .slide-from-left {
-        opacity: 0;
-        transform: translateX(-80px);
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .slide-from-right {
-        opacity: 0;
-        transform: translateX(80px);
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-
-      .slide-from-left.visible,
-      .slide-from-right.visible {
-        opacity: 1;
+          transparent);
+    }
+
+    .testimonials .section-eyebrow {
+      color: var(--clr-accent);
+    }
+
+    .testimonials .section-eyebrow::before {
+      background: var(--clr-accent);
+    }
+
+    .testimonials .section-title {
+      color: #fff;
+    }
+
+    .testimonials .section-sub {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .test-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .test-inner .section-eyebrow {
+      justify-content: center;
+    }
+
+    .test-inner .section-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .test-carousel-wrap {
+      overflow: hidden;
+      position: relative;
+      margin-top: 48px;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      width: 100vw;
+    }
+
+    .test-track {
+      display: flex;
+      gap: 24px;
+      animation: scrollTestimonials 120s linear infinite;
+      width: max-content;
+    }
+
+    .test-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollTestimonials {
+      0% {
         transform: translateX(0);
       }
 
-      .slide-delay {
-        transition-delay: 0.15s;
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .test-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      transition: all 0.3s;
+      min-width: 380px;
+      max-width: 380px;
+      flex-shrink: 0;
+    }
+
+    .test-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .test-stars {
+      color: var(--clr-accent);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .test-quote {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .test-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .test-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #fff;
+    }
+
+    .test-info {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ─── PRICING ─── */
+    /* ─── FAQ ─── */
+    .faq-section {
+      padding: 100px 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-section .section-eyebrow,
+    .faq-section .section-title,
+    .faq-section .section-sub {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .faq-section .section-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faq-list {
+      margin-top: 48px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .faq-question:hover {
+      color: var(--clr-primary);
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform 0.3s ease;
+      color: var(--clr-primary);
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.35s ease,
+        padding 0.35s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      padding-bottom: 24px;
+      font-size: 0.95rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      padding: 100px 32px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg,
+          var(--clr-primary) 0%,
+          var(--clr-primary-dark) 100%);
+      border-radius: var(--radius-xl);
+      padding: 80px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -50px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(245, 166, 35, 0.15),
+          transparent);
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      bottom: -150px;
+      left: 50px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(255, 255, 255, 0.05),
+          transparent);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+    }
+
+    .cta-content h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .cta-content p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .cta-actions {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-actions .btn-accent {
+      font-size: 1.05rem;
+      padding: 18px 40px;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 80px 32px 40px;
+      border-top: 1px solid var(--clr-border);
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-text-muted);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .footer-social a:hover {
+      background: var(--clr-primary);
+      color: #fff;
+    }
+
+    .footer-badges {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+
+    .store-badge:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .store-badge span {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .store-badge span small {
+      font-weight: 400;
+      font-size: 0.55rem;
+      letter-spacing: 0.02em;
+      opacity: 0.9;
+    }
+
+    .footer-col h4 {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--clr-text);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--clr-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--clr-border);
+      font-size: 0.82rem;
+      color: var(--clr-text-light);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: var(--clr-text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--clr-text);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
       }
 
-      /* ─── MOBILE NAV ─── */
-      .nav-toggle {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 36px;
-        height: 36px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slide-in animations for feature rows */
+    .slide-from-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-from-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-from-left.visible,
+    .slide-from-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-delay {
+      transition-delay: 0.15s;
+    }
+
+    /* ─── MOBILE NAV ─── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      background: var(--clr-text);
+      border-radius: 1px;
+      transition: all 0.3s;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 120px;
+        min-height: auto;
+      }
+
+      .hero-visual-main {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .test-card {
+        min-width: 300px;
+        max-width: 300px;
+      }
+
+      .feature-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .feature-row:nth-child(even) {
+        direction: ltr;
+      }
+
+      .cta-box {
         flex-direction: column;
-        gap: 5px;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .nav-toggle span {
-        width: 22px;
-        height: 2px;
-        background: var(--clr-text);
-        border-radius: 1px;
-        transition: all 0.3s;
-      }
-
-      /* ─── RESPONSIVE ─── */
-      @media (max-width: 1024px) {
-        .hero {
-          grid-template-columns: 1fr;
-          gap: 40px;
-          padding-top: 120px;
-          min-height: auto;
-        }
-
-        .hero-visual-main {
-          max-width: 500px;
-          margin: 0 auto;
-        }
-
-        .how-grid {
-          grid-template-columns: 1fr;
-          max-width: 500px;
-          margin: 0 auto;
-        }
-
-        .test-card {
-          min-width: 300px;
-          max-width: 300px;
-        }
-
-        .feature-row {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        .feature-row:nth-child(even) {
-          direction: ltr;
-        }
-
-        .cta-box {
-          flex-direction: column;
-          text-align: center;
-          padding: 60px 40px;
-        }
-
-        .cta-content {
-          max-width: 100%;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      /* ─── WHY LINGOWIRE ─── */
-      .why-section {
-        padding: 80px 32px;
-        background: var(--clr-primary);
-      }
-
-      .why-header {
         text-align: center;
-        margin-bottom: 60px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 60px 40px;
+      }
+
+      .cta-content {
+        max-width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ─── WHY LINGOWIRE ─── */
+    .why-section {
+      padding: 80px 32px;
+      background: var(--clr-primary);
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .why-header h2 {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .why-header p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .why-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .why-icon-wrap {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .why-icon-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .why-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .why-desc {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 900px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
       }
 
       .why-header h2 {
-        font-family: var(--font-display);
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: #ffffff;
-        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      .why-section {
+        padding: 60px 20px;
+      }
+    }
+
+    /* ─── MOBILE MENU ─── */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--clr-surface);
+        flex-direction: column;
+        padding: 100px 32px 40px;
+        gap: 0;
+        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.1);
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 99;
+        display: flex;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.05rem;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--clr-border);
+      }
+
+      .nav-toggle {
+        display: flex;
+        z-index: 101;
+      }
+
+      .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .nav-actions .download-dropdown {
+        display: none;
+      }
+
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 98;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+
+      .mobile-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    /* ─── SMALL SCREENS ─── */
+    @media (max-width: 600px) {
+      .nav {
+        padding: 12px 16px;
+      }
+
+      .nav-logo img {
+        height: 52px !important;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 120px 20px 30px;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-visual {
+        height: 320px;
+      }
+
+      .orbit-system {
+        width: 320px;
+        height: 320px;
+      }
+
+      .phone-mockup {
+        width: 180px;
+      }
+
+      .orbit-item .bubble-content {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+
+      .orbit-item .bubble-content img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      /* Download dropdown - tap-friendly on mobile */
+      .download-dropdown .dropdown-menu {
+        min-width: 180px;
+      }
+
+      /* Why Section */
+      .why-header h2 {
+        font-size: 1.7rem;
       }
 
       .why-header p {
-        font-size: 1.05rem;
-        color: rgba(255, 255, 255, 0.8);
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.7;
-      }
-
-      .why-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .why-card {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .why-icon-wrap {
-        width: 56px;
-        height: 56px;
-        margin-bottom: 24px;
-        color: #ffffff;
-      }
-
-      .why-icon-wrap svg {
-        width: 100%;
-        height: 100%;
-      }
-
-      .why-title {
-        font-family: var(--font-display);
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 12px;
-      }
-
-      .why-desc {
-        font-size: 0.92rem;
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.6;
-        padding: 0 10px;
-      }
-
-      @media (max-width: 900px) {
-        .why-grid {
-          grid-template-columns: 1fr;
-          max-width: 400px;
-          margin: 0 auto;
-        }
-
-        .why-header h2 {
-          font-size: 2rem;
-        }
-
-        .why-section {
-          padding: 60px 20px;
-        }
-      }
-
-      /* ─── MOBILE MENU ─── */
-      @media (max-width: 768px) {
-        .nav-links {
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 75%;
-          max-width: 320px;
-          height: 100vh;
-          background: var(--clr-surface);
-          flex-direction: column;
-          padding: 100px 32px 40px;
-          gap: 0;
-          box-shadow: -8px 0 30px rgba(0, 0, 0, 0.1);
-          transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 99;
-          display: flex;
-        }
-
-        .nav-links.open {
-          right: 0;
-        }
-
-        .nav-links a {
-          font-size: 1.05rem;
-          padding: 16px 0;
-          border-bottom: 1px solid var(--clr-border);
-        }
-
-        .nav-toggle {
-          display: flex;
-          z-index: 101;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-          opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .nav-actions .download-dropdown {
-          display: none;
-        }
-
-        .mobile-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.4);
-          z-index: 98;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.3s;
-        }
-
-        .mobile-overlay.visible {
-          opacity: 1;
-          visibility: visible;
-        }
-
-        .hero h1 {
-          font-size: 2.4rem;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          gap: 16px;
-          text-align: center;
-        }
-      }
-
-      /* ─── SMALL SCREENS ─── */
-      @media (max-width: 600px) {
-        .nav {
-          padding: 12px 16px;
-        }
-
-        .nav-logo img {
-          height: 52px !important;
-        }
-
-        /* Hero */
-        .hero {
-          padding: 120px 20px 30px;
-          text-align: center;
-          gap: 20px;
-        }
-
-        .hero h1 {
-          font-size: 1.9rem;
-        }
-
-        .hero-sub {
-          font-size: 0.95rem;
-        }
-
-        .hero-cta {
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 24px;
-        }
-
-        .hero-cta .btn {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .hero-visual {
-          height: 320px;
-        }
-
-        .orbit-system {
-          width: 320px;
-          height: 320px;
-        }
-
-        .phone-mockup {
-          width: 180px;
-        }
-
-        .orbit-item .bubble-content {
-          font-size: 0.7rem;
-          padding: 6px 10px;
-        }
-
-        .orbit-item .bubble-content img {
-          width: 20px;
-          height: 20px;
-        }
-
-        .hero-stats {
-          flex-direction: column;
-          gap: 16px;
-          align-items: center;
-        }
-
-        /* Download dropdown - tap-friendly on mobile */
-        .download-dropdown .dropdown-menu {
-          min-width: 180px;
-        }
-
-        /* Why Section */
-        .why-header h2 {
-          font-size: 1.7rem;
-        }
-
-        .why-header p {
-          font-size: 0.95rem;
-        }
-
-        /* How It Works */
-        .how {
-          padding: 60px 20px;
-        }
-
-        .how-grid {
-          gap: 16px;
-        }
-
-        .how-card {
-          padding: 28px 20px;
-        }
-
-        /* Features */
-        .features {
-          padding: 40px 20px 60px;
-        }
-
-        .feature-row {
-          gap: 8px;
-          margin-bottom: 32px;
-          text-align: center;
-          justify-items: center;
-        }
-
-        .feature-visual {
-          width: 100%;
-          max-width: 100%;
-        }
-
-        .feature-visual img {
-          width: 100%;
-          border-radius: 16px;
-          display: block;
-        }
-
-        .feature-content {
-          text-align: center;
-        }
-
-        .feature-content h3 {
-          font-size: 1.3rem;
-        }
-
-        .feature-content p {
-          font-size: 0.92rem;
-          margin-bottom: 16px;
-        }
-
-        .feature-checks {
-          gap: 10px;
-          justify-content: flex-start;
-        }
-
-        .feature-check {
-          text-align: left;
-        }
-
-        /* Testimonials */
-        .testimonials {
-          padding: 60px 0;
-        }
-
-        .test-track {
-          animation-duration: 160s;
-        }
-
-        .test-inner {
-          padding: 0 20px;
-        }
-
-        .test-card {
-          min-width: 280px;
-          max-width: 280px;
-          padding: 24px;
-        }
-
-        /* FAQ */
-        .faq-section {
-          padding: 60px 20px;
-        }
-
-        .faq-question {
-          font-size: 0.95rem;
-          padding: 18px 0;
-        }
-
-        /* CTA */
-        .cta-box {
-          padding: 40px 20px;
-          border-radius: 16px;
-        }
-
-        .cta-content h2 {
-          font-size: 1.6rem;
-        }
-
-        .cta-actions {
-          flex-direction: column !important;
-          align-items: stretch !important;
-        }
-
-        .cta-actions .btn {
-          width: 100%;
-          justify-content: center;
-        }
-
-        /* Footer */
-        .footer {
-          padding: 40px 20px 0;
-        }
-
-        .footer-brand p {
-          font-size: 0.9rem;
-        }
-
-        .footer-badges {
-          flex-direction: column;
-        }
-
-        .store-badge {
-          justify-content: center;
-        }
-
-        .footer-bottom {
-          padding: 24px 16px;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .footer-bottom-links {
-          gap: 16px;
-        }
-
-        /* Section titles */
-        .section-title {
-          font-size: 1.8rem;
-        }
-
-        .section-sub {
-          font-size: 0.95rem;
-        }
-
-        .section-eyebrow {
-          font-size: 0.72rem;
-        }
-      }
-
-      /* ─── DESKTOP QR CODES ─── */
-      .hero-qr-codes {
-        display: flex;
-        gap: 32px;
-        margin-top: 40px;
-        padding-top: 32px;
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
-        animation: fadeInUp 0.6s 0.5s ease both;
-        position: relative;
-        z-index: 1;
-      }
-
-      .qr-group {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .qr-code-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 10px;
-        border: 1px solid var(--clr-border);
-        padding: 6px;
-        background: #fff;
-      }
-
-      .qr-label {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .qr-label span {
-        font-size: 0.68rem;
-        font-weight: 700;
-        color: var(--clr-text-light);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .qr-label strong {
         font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--clr-primary-dark);
-        line-height: 1.2;
       }
 
-      @media (max-width: 1024px) {
-        .hero-qr-codes {
-          display: none !important;
-        }
+      /* How It Works */
+      .how {
+        padding: 60px 20px;
       }
-    </style>
-  </head>
 
-  <body>
-    <!-- ═══════ NAV ═══════ -->
-    <nav class="nav" id="nav">
-      <div class="nav-inner">
-        <a href="#" class="nav-logo">
-          <img
-            src="assets/images/4.png"
-            alt="Lingowire"
-            style="height: 48px; width: auto"
-          />
-        </a>
-        <div class="nav-links">
-          <a href="#why">Why Lingowire?</a>
-          <a href="#how">How it Works</a>
-          <a href="#faq">FAQ</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div class="nav-actions">
-          <div class="download-dropdown">
-            <a href="#" class="btn btn-primary">Download Lingowire ▾</a>
-            <div class="dropdown-menu">
-              <a
-                href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520"
-                target="_blank"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                  />
-                </svg>
-                App Store
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.lingowire"
-                target="_blank"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M3.18 23.64c.35.22.78.27 1.18.13l12.87-5.8-3.24-3.24-10.81 8.91zm-.63-1.2a1.29 1.29 0 0 1-.05-.37V1.93c0-.13.02-.25.05-.37l11.07 11.07L2.55 22.44zM20.15 10.63l-3.22-1.45-3.53 3.53 3.53 3.53 3.22-1.45c.93-.42.93-1.75 0-4.16zm-4.55-2.55L4.36.12C4.18.04 3.99 0 3.8 0c-.24 0-.46.07-.63.2l10.9 10.9 1.53-3.02z"
-                  />
-                </svg>
-                Google Play
-              </a>
-            </div>
-          </div>
-        </div>
-        <button class="nav-toggle" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
+      .how-grid {
+        gap: 16px;
+      }
+
+      .how-card {
+        padding: 28px 20px;
+      }
+
+      /* Features */
+      .features {
+        padding: 40px 20px 60px;
+      }
+
+      .feature-row {
+        gap: 8px;
+        margin-bottom: 32px;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .feature-visual {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .feature-visual img {
+        width: 100%;
+        border-radius: 16px;
+        display: block;
+      }
+
+      .feature-content {
+        text-align: center;
+      }
+
+      .feature-content h3 {
+        font-size: 1.3rem;
+      }
+
+      .feature-content p {
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+      }
+
+      .feature-checks {
+        gap: 10px;
+        justify-content: flex-start;
+      }
+
+      .feature-check {
+        text-align: left;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 60px 0;
+      }
+
+      .test-track {
+        animation-duration: 160s;
+      }
+
+      .test-inner {
+        padding: 0 20px;
+      }
+
+      .test-card {
+        min-width: 280px;
+        max-width: 280px;
+        padding: 24px;
+      }
+
+      /* FAQ */
+      .faq-section {
+        padding: 60px 20px;
+      }
+
+      .faq-question {
+        font-size: 0.95rem;
+        padding: 18px 0;
+      }
+
+      /* CTA */
+      .cta-box {
+        padding: 40px 20px;
+        border-radius: 16px;
+      }
+
+      .cta-content h2 {
+        font-size: 1.6rem;
+      }
+
+      .cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+
+      .cta-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 40px 20px 0;
+      }
+
+      .footer-brand p {
+        font-size: 0.9rem;
+      }
+
+      .footer-badges {
+        flex-direction: column;
+      }
+
+      .store-badge {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        padding: 24px 16px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-bottom-links {
+        gap: 16px;
+      }
+
+      /* Section titles */
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-sub {
+        font-size: 0.95rem;
+      }
+
+      .section-eyebrow {
+        font-size: 0.72rem;
+      }
+    }
+
+    /* ─── DESKTOP QR CODES ─── */
+    .hero-qr-codes {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      animation: fadeInUp 0.6s 0.5s ease both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .qr-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .qr-code-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      border: 1px solid var(--clr-border);
+      padding: 6px;
+      background: #fff;
+    }
+
+    .qr-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .qr-label span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--clr-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .qr-label strong {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--clr-primary-dark);
+      line-height: 1.2;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-qr-codes {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ═══════ NAV ═══════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="assets/images/4.png" alt="Lingowire" style="height: 48px; width: auto" />
+      </a>
+      <div class="nav-links">
+        <a href="#why">Why Lingowire?</a>
+        <a href="#how">How it Works</a>
+        <a href="#faq">FAQ</a>
+        <a href="contact.html">Contact</a>
       </div>
-    </nav>
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-
-    <!-- ═══════ HERO ═══════ -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>From learning to <em>speaking</em></h1>
-        <p class="hero-sub">
-          Find conversation partners, practice consistently, and build real
-          fluency in any language.
-        </p>
-
-        <div class="hero-cta">
-          <div class="download-dropdown">
-            <a
-              href="#"
-              class="btn btn-primary btn-large"
-              style="background: #1a1a1a; padding: 16px 40px"
-              >Download Lingowire ▾</a
-            >
-            <div class="dropdown-menu">
-              <a
-                href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520"
-                target="_blank"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                  />
-                </svg>
-                App Store
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.lingowire"
-                target="_blank"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M3.18 23.64c.35.22.78.27 1.18.13l12.87-5.8-3.24-3.24-10.81 8.91zm-.63-1.2a1.29 1.29 0 0 1-.05-.37V1.93c0-.13.02-.25.05-.37l11.07 11.07L2.55 22.44zM20.15 10.63l-3.22-1.45-3.53 3.53 3.53 3.53 3.22-1.45c.93-.42.93-1.75 0-4.16zm-4.55-2.55L4.36.12C4.18.04 3.99 0 3.8 0c-.24 0-.46.07-.63.2l10.9 10.9 1.53-3.02z"
-                  />
-                </svg>
-                Google Play
-              </a>
-            </div>
+      <div class="nav-actions">
+        <div class="download-dropdown">
+          <a href="#" class="btn btn-primary">Download Lingowire ▾</a>
+          <div class="dropdown-menu">
+            <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.lingowire" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M3.18 23.64c.35.22.78.27 1.18.13l12.87-5.8-3.24-3.24-10.81 8.91zm-.63-1.2a1.29 1.29 0 0 1-.05-.37V1.93c0-.13.02-.25.05-.37l11.07 11.07L2.55 22.44zM20.15 10.63l-3.22-1.45-3.53 3.53 3.53 3.53 3.22-1.45c.93-.42.93-1.75 0-4.16zm-4.55-2.55L4.36.12C4.18.04 3.99 0 3.8 0c-.24 0-.46.07-.63.2l10.9 10.9 1.53-3.02z" />
+              </svg>
+              Google Play
+            </a>
           </div>
-          <a href="#how" class="btn btn-ghost" style="font-weight: 600"
-            >How it works →</a
-          >
         </div>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-        <div class="hero-qr-codes">
-          <div class="qr-group">
-            <img
-              src="assets/images/qr.jpeg"
-              alt="Scan to Download"
-              class="qr-code-img"
-            />
-            <div
-              class="qr-text"
-              style="
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>From learning to <em>speaking</em></h1>
+      <p class="hero-sub">
+        Find conversation partners, practice consistently, and build real
+        fluency in any language.
+      </p>
+
+      <div class="hero-cta">
+        <div class="download-dropdown">
+          <a href="#" class="btn btn-primary btn-large" style="background: #1a1a1a; padding: 16px 40px">Download
+            Lingowire ▾</a>
+          <div class="dropdown-menu">
+            <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.lingowire" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M3.18 23.64c.35.22.78.27 1.18.13l12.87-5.8-3.24-3.24-10.81 8.91zm-.63-1.2a1.29 1.29 0 0 1-.05-.37V1.93c0-.13.02-.25.05-.37l11.07 11.07L2.55 22.44zM20.15 10.63l-3.22-1.45-3.53 3.53 3.53 3.53 3.22-1.45c.93-.42.93-1.75 0-4.16zm-4.55-2.55L4.36.12C4.18.04 3.99 0 3.8 0c-.24 0-.46.07-.63.2l10.9 10.9 1.53-3.02z" />
+              </svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+        <a href="#how" class="btn btn-ghost" style="font-weight: 600">How it works →</a>
+      </div>
+
+      <div class="hero-qr-codes">
+        <div class="qr-group">
+          <img src="assets/images/qr.jpeg" alt="Scan to Download" class="qr-code-img" />
+          <div class="qr-text" style="
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 gap: 2px;
-              "
-            >
-              <div class="qr-label">
-                <span>Scan to Download</span>
-                <div
-                  style="
+              ">
+            <div class="qr-label">
+              <span>Scan to Download</span>
+              <div style="
                     display: flex;
                     align-items: center;
                     gap: 6px;
                     flex-wrap: wrap;
-                  "
-                >
-                  <strong>App Store</strong>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="16"
-                    height="16"
-                    style="margin-top: -1px"
-                  >
-                    <path
-                      d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                    />
-                  </svg>
-                  <strong>& Google Play</strong>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="16"
-                    height="16"
-                    style="margin-top: -1px"
-                  >
-                    <path
-                      d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z"
-                    />
-                  </svg>
-                </div>
+                  ">
+                <strong>App Store</strong>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style="margin-top: -1px">
+                  <path
+                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+                <strong>& Google Play</strong>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style="margin-top: -1px">
+                  <path
+                    d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z" />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="hero-visual">
-        <!-- Center Phone -->
-        <div class="phone-mockup">
-          <img
-            src="assets/images/1.png"
-            alt="Lingowire App"
-            onerror="this.src = 'https://i.imgur.com/w4SjW0e.jpg'"
-          />
+    <div class="hero-visual">
+      <!-- Center Phone -->
+      <div class="phone-mockup">
+        <img src="assets/images/1.png" alt="Lingowire App" onerror="this.src = 'https://i.imgur.com/w4SjW0e.jpg'" />
+      </div>
+
+      <!-- Orbiting Bubbles -->
+      <div class="orbit-system">
+        <!-- Bubble 1: 0 degrees -->
+        <div class="orbit-item" style="transform: rotate(0deg) translate(260px) rotate(0deg)">
+          <div class="bubble-content bubble-primary">
+            <img src="https://randomuser.me/api/portraits/thumb/women/12.jpg" alt="User" />
+            Hola! 👋
+          </div>
         </div>
 
-        <!-- Orbiting Bubbles -->
-        <div class="orbit-system">
-          <!-- Bubble 1: 0 degrees -->
-          <div
-            class="orbit-item"
-            style="transform: rotate(0deg) translate(260px) rotate(0deg)"
-          >
-            <div class="bubble-content bubble-primary">
-              <img
-                src="https://randomuser.me/api/portraits/thumb/women/12.jpg"
-                alt="User"
-              />
-              Hola! 👋
-            </div>
+        <!-- Bubble 2: 72 degrees -->
+        <div class="orbit-item" style="transform: rotate(72deg) translate(260px) rotate(-72deg)">
+          <div class="bubble-content">
+            <img src="https://flagcdn.com/w40/jp.png" alt="Flag" />
+            こんにちは
           </div>
+        </div>
 
-          <!-- Bubble 2: 72 degrees -->
-          <div
-            class="orbit-item"
-            style="transform: rotate(72deg) translate(260px) rotate(-72deg)"
-          >
-            <div class="bubble-content">
-              <img src="https://flagcdn.com/w40/jp.png" alt="Flag" />
-              こんにちは
-            </div>
+        <!-- Bubble 3: 144 degrees -->
+        <div class="orbit-item" style="transform: rotate(144deg) translate(260px) rotate(-144deg)">
+          <div class="bubble-content bubble-accent">
+            <img src="https://randomuser.me/api/portraits/thumb/men/32.jpg" alt="User" />
+            Bonjour!
           </div>
+        </div>
 
-          <!-- Bubble 3: 144 degrees -->
-          <div
-            class="orbit-item"
-            style="transform: rotate(144deg) translate(260px) rotate(-144deg)"
-          >
-            <div class="bubble-content bubble-accent">
-              <img
-                src="https://randomuser.me/api/portraits/thumb/men/32.jpg"
-                alt="User"
-              />
-              Bonjour!
-            </div>
+        <!-- Bubble 4: 216 degrees -->
+        <div class="orbit-item" style="transform: rotate(216deg) translate(260px) rotate(-216deg)">
+          <div class="bubble-content">
+            <img src="https://flagcdn.com/w40/de.png" alt="Flag" />
+            Wie geht's?
           </div>
+        </div>
 
-          <!-- Bubble 4: 216 degrees -->
-          <div
-            class="orbit-item"
-            style="transform: rotate(216deg) translate(260px) rotate(-216deg)"
-          >
-            <div class="bubble-content">
-              <img src="https://flagcdn.com/w40/de.png" alt="Flag" />
-              Wie geht's?
-            </div>
-          </div>
-
-          <!-- Bubble 5: 288 degrees -->
-          <div
-            class="orbit-item"
-            style="transform: rotate(288deg) translate(260px) rotate(-288deg)"
-          >
-            <div class="bubble-content bubble-warn">
-              <img
-                src="https://randomuser.me/api/portraits/thumb/women/65.jpg"
-                alt="User"
-              />
-              Ciao! 🇮🇹
-            </div>
+        <!-- Bubble 5: 288 degrees -->
+        <div class="orbit-item" style="transform: rotate(288deg) translate(260px) rotate(-288deg)">
+          <div class="bubble-content bubble-warn">
+            <img src="https://randomuser.me/api/portraits/thumb/women/65.jpg" alt="User" />
+            Ciao! 🇮🇹
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════ LANGUAGE GLOBE ═══════ -->
-    <section class="lang-globe-section">
-      <div class="lang-globe-header">
-        <div class="lang-globe-label">Over 100+ Languages Supported</div>
-        <h2 class="section-title" style="max-width: 600px; margin: 0 auto">
-          A Worldwide Community
-        </h2>
-      </div>
+  <!-- ═══════ LANGUAGE GLOBE ═══════ -->
+  <section class="lang-globe-section">
+    <div class="lang-globe-header">
+      <div class="lang-globe-label">Over 100+ Languages Supported</div>
+      <h2 class="section-title" style="max-width: 600px; margin: 0 auto">
+        A Worldwide Community
+      </h2>
+    </div>
 
-      <div class="lang-globe-wrapper">
-        <div class="earth-backdrop"></div>
-        <div class="lang-globe-cloud"></div>
-      </div>
-    </section>
+    <div class="lang-globe-wrapper">
+      <div class="earth-backdrop"></div>
+      <div class="lang-globe-cloud"></div>
+    </div>
+  </section>
 
-    <!-- ═══════ WHY LINGOWIRE ═══════ -->
-    <section class="why-section reveal" id="why">
-      <div class="why-header">
-        <h2>Why Lingowire?</h2>
-        <p>
-          Here's why you should use Lingowire to learn a new language, fast. Our
-          app helps you speak confidently through real practice, community
-          connection, and access to every language.
+  <!-- ═══════ WHY LINGOWIRE ═══════ -->
+  <section class="why-section reveal" id="why">
+    <div class="why-header">
+      <h2>Why Lingowire?</h2>
+      <p>
+        Here's why you should use Lingowire to learn a new language, fast. Our
+        app helps you speak confidently through real practice, community
+        connection, and access to every language.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <!-- Card 1 -->
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </div>
+        <h3 class="why-title">Real Practice</h3>
+        <p class="why-desc">
+          Speaking a language confidently requires actual practice.
         </p>
       </div>
 
-      <div class="why-grid">
-        <!-- Card 1 -->
-        <div class="why-card">
-          <div class="why-icon-wrap">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-              ></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
-            </svg>
-          </div>
-          <h3 class="why-title">Real Practice</h3>
-          <p class="why-desc">
-            Speaking a language confidently requires actual practice.
-          </p>
+      <!-- Card 2 -->
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+            </path>
+          </svg>
         </div>
-
-        <!-- Card 2 -->
-        <div class="why-card">
-          <div class="why-icon-wrap">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="why-title">Global Community</h3>
-          <p class="why-desc">
-            Lingowire connects you with practice partners and groups.
-          </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="why-card">
-          <div class="why-icon-wrap">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="why-title">All Languages</h3>
-          <p class="why-desc">
-            We support all spoken languages leaving no language behind.
-          </p>
-        </div>
+        <h3 class="why-title">Global Community</h3>
+        <p class="why-desc">
+          Lingowire connects you with practice partners and groups.
+        </p>
       </div>
-    </section>
 
-    <!-- ═══════ HOW IT WORKS ═══════ -->
-    <section class="how reveal" id="how">
-      <div class="section-eyebrow">A New Way to Build Real Fluency</div>
-      <h2 class="section-title">Consistent Practice</h2>
-      <p class="section-sub">
-        Lingowire helps you actually speak the language you're learning, not
-        just study it. Start with solo practice, have real partner
-        conversations, and join groups that keep your language alive.
-      </p>
-
-      <div class="how-grid">
-        <div class="how-card">
-          <span class="how-card-num">01</span>
-          <div class="how-card-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </div>
-          <h3>Prepare</h3>
-          <p>
-            Real-world speaking practice through relatable conversation prompts.
-            Build confidence before your next conversation.
-          </p>
+      <!-- Card 3 -->
+      <div class="why-card">
+        <div class="why-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
         </div>
-
-        <div class="how-card">
-          <span class="how-card-num">02</span>
-          <div class="how-card-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <h3>Connect</h3>
-          <p>
-            Meet real people anywhere in the world who share your language
-            goals. Fluency grows one real conversation at a time.
-          </p>
-        </div>
-
-        <div class="how-card">
-          <span class="how-card-num">03</span>
-          <div class="how-card-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <h3>Practice</h3>
-          <p>
-            Join supportive language groups led by friendly hosts and fluent
-            speakers. Practice, speak, and grow alongside others.
-          </p>
-        </div>
+        <h3 class="why-title">All Languages</h3>
+        <p class="why-desc">
+          We support all spoken languages leaving no language behind.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════ FEATURES ═══════ -->
-    <section class="features" id="features">
-      <div class="section-eyebrow">Why Lingowire Works</div>
-      <h2 class="section-title">A smarter, more human path to fluency</h2>
-      <p class="section-sub">
-        An immersive language learning app designed around real human connection
-        and proven teaching methods.
-      </p>
+  <!-- ═══════ HOW IT WORKS ═══════ -->
+  <section class="how reveal" id="how">
+    <div class="section-eyebrow">A New Way to Build Real Fluency</div>
+    <h2 class="section-title">Consistent Practice</h2>
+    <p class="section-sub">
+      Lingowire helps you actually speak the language you're learning, not
+      just study it. Start with solo practice, have real partner
+      conversations, and join groups that keep your language alive.
+    </p>
 
-      <!-- Feature 1: Real Conversations -->
-      <div class="feature-row">
-        <div class="feature-visual">
-          <img
-            src="assets/images/7.png"
-            alt="Real conversation interface"
-            style="
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="how-card-num">01</span>
+        <div class="how-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </div>
+        <h3>Prepare</h3>
+        <p>
+          Real-world speaking practice through relatable conversation prompts.
+          Build confidence before your next conversation.
+        </p>
+      </div>
+
+      <div class="how-card">
+        <span class="how-card-num">02</span>
+        <div class="how-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Connect</h3>
+        <p>
+          Meet real people anywhere in the world who share your language
+          goals. Fluency grows one real conversation at a time.
+        </p>
+      </div>
+
+      <div class="how-card">
+        <span class="how-card-num">03</span>
+        <div class="how-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Practice</h3>
+        <p>
+          Join supportive language groups led by friendly hosts and fluent
+          speakers. Practice, speak, and grow alongside others.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FEATURES ═══════ -->
+  <section class="features" id="features">
+    <div class="section-eyebrow">Why Lingowire Works</div>
+    <h2 class="section-title">A smarter, more human path to fluency</h2>
+    <p class="section-sub">
+      An immersive language learning app designed around real human connection
+      and proven teaching methods.
+    </p>
+
+    <!-- Feature 1: Real Conversations -->
+    <div class="feature-row">
+      <div class="feature-visual">
+        <img src="assets/images/7.png" alt="Real conversation interface" style="
               width: 60%;
               height: auto;
               display: block;
               margin: 0 auto;
               border-radius: var(--radius-xl);
-            "
-          />
-        </div>
-        <div class="feature-content">
-          <h3>Real speaking practice with real people</h3>
-          <p>
-            Practice through live conversations with partners, fluent speakers,
-            and tutors across any spoken language. Use guided conversation
-            prompts, get natural corrections, and build confidence by actually
-            speaking, not just memorizing. Learners and fluent speakers can both
-            participate, host sessions, and grow through conversation.
-          </p>
-        </div>
+            " />
       </div>
-    </section>
-
-    <!-- ═══════ TESTIMONIALS ═══════ -->
-    <section class="testimonials reveal">
-      <div class="test-inner">
-        <div class="section-eyebrow">Testimonials</div>
-        <h2 class="section-title">Loved by language enthusiasts worldwide</h2>
-        <p class="section-sub">
-          Join our global community building fluency with real practice partners
+      <div class="feature-content">
+        <h3>Real speaking practice with real people</h3>
+        <p>
+          Practice through live conversations with partners, fluent speakers,
+          and tutors across any spoken language. Use guided conversation
+          prompts, get natural corrections, and build confidence by actually
+          speaking, not just memorizing. Learners and fluent speakers can both
+          participate, host sessions, and grow through conversation.
         </p>
+      </div>
+    </div>
+  </section>
 
-        <div class="test-carousel-wrap">
-          <div class="test-track">
-            <!-- Card 1 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "Lingowire got me speaking more consistently instead of just
-                reviewing vocabulary. Real conversation practice each week built
-                my confidence fast."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #ff6b6b, #ee5a24)"
-                >
-                  D
-                </div>
-                <div>
-                  <div class="test-name">Daniel</div>
-                  <div class="test-info">Canada · Practicing French</div>
-                </div>
+  <!-- ═══════ TESTIMONIALS ═══════ -->
+  <section class="testimonials reveal">
+    <div class="test-inner">
+      <div class="section-eyebrow">Testimonials</div>
+      <h2 class="section-title">Loved by language enthusiasts worldwide</h2>
+      <p class="section-sub">
+        Join our global community building fluency with real practice partners
+      </p>
+
+      <div class="test-carousel-wrap">
+        <div class="test-track">
+          <!-- Card 1 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "Lingowire got me speaking more consistently instead of just
+              reviewing vocabulary. Real conversation practice each week built
+              my confidence fast."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24)">
+                D
+              </div>
+              <div>
+                <div class="test-name">Daniel</div>
+                <div class="test-info">Canada · Practicing French</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 2 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I was losing my Spanish because I had no one to practice with.
-                Now I have regular conversation partners and it keeps me sharp."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #7c4dff, #5c2dbf)"
-                >
-                  M
-                </div>
-                <div>
-                  <div class="test-name">María</div>
-                  <div class="test-info">USA · Practicing Spanish</div>
-                </div>
+          <!-- Card 2 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I was losing my Spanish because I had no one to practice with.
+              Now I have regular conversation partners and it keeps me sharp."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #7c4dff, #5c2dbf)">
+                M
+              </div>
+              <div>
+                <div class="test-name">María</div>
+                <div class="test-info">USA · Practicing Spanish</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 3 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "The conversation prompts make sessions so much easier. No
-                awkward silence, just real talking from the start."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #00bcd4, #0097a7)"
-                >
-                  T
-                </div>
-                <div>
-                  <div class="test-name">Tunde</div>
-                  <div class="test-info">Nigeria · Practicing German</div>
-                </div>
+          <!-- Card 3 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "The conversation prompts make sessions so much easier. No
+              awkward silence, just real talking from the start."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #00bcd4, #0097a7)">
+                T
+              </div>
+              <div>
+                <div class="test-name">Tunde</div>
+                <div class="test-info">Nigeria · Practicing German</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 4 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I’m practicing a less common language and didn’t expect to find
-                partners so easily. That alone makes this app different."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #42b4e6, #1e3a8a)"
-                >
-                  L
-                </div>
-                <div>
-                  <div class="test-name">Ese</div>
-                  <div class="test-info">Canada · Practicing Urhobo</div>
-                </div>
+          <!-- Card 4 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I’m practicing a less common language and didn’t expect to find
+              partners so easily. That alone makes this app different."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #42b4e6, #1e3a8a)">
+                L
+              </div>
+              <div>
+                <div class="test-name">Ese</div>
+                <div class="test-info">Canada · Practicing Urhobo</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 5 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "It feels like language study buddies on demand. I open the app
-                and I’m speaking within minutes."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #4caf50, #2e7d32)"
-                >
-                  J
-                </div>
-                <div>
-                  <div class="test-name">Jason</div>
-                  <div class="test-info">Australia · Practicing Japanese</div>
-                </div>
+          <!-- Card 5 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "It feels like language study buddies on demand. I open the app
+              and I’m speaking within minutes."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #4caf50, #2e7d32)">
+                J
+              </div>
+              <div>
+                <div class="test-name">Jason</div>
+                <div class="test-info">Australia · Practicing Japanese</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 6 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "As a tutor, I like how easy it is to host focused speaking
-                sessions and meet motivated learners."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #ff9800, #e65100)"
-                >
-                  C
-                </div>
-                <div>
-                  <div class="test-name">Claire</div>
-                  <div class="test-info">France · Teaching French</div>
-                </div>
+          <!-- Card 6 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "As a tutor, I like how easy it is to host focused speaking
+              sessions and meet motivated learners."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #ff9800, #e65100)">
+                C
+              </div>
+              <div>
+                <div class="test-name">Claire</div>
+                <div class="test-info">France · Teaching French</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 7 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I joined to practice my spouse’s language so I could speak more
-                with my in-laws. Real conversations made it personal and
-                motivating."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #e91e63, #c2185b)"
-                >
-                  R
-                </div>
-                <div>
-                  <div class="test-name">Ravi</div>
-                  <div class="test-info">UK · Practicing Yoruba</div>
-                </div>
+          <!-- Card 7 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I joined to practice my spouse’s language so I could speak more
+              with my in-laws. Real conversations made it personal and
+              motivating."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #e91e63, #c2185b)">
+                R
+              </div>
+              <div>
+                <div class="test-name">Ravi</div>
+                <div class="test-info">UK · Practicing Yoruba</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 8 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I used to understand Italian but struggled to speak. Regular
-                conversation practice here changed that."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #607d8b, #455a64)"
-                >
-                  L
-                </div>
-                <div>
-                  <div class="test-name">Luca</div>
-                  <div class="test-info">Canada · Practicing Italian</div>
-                </div>
+          <!-- Card 8 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I used to understand Italian but struggled to speak. Regular
+              conversation practice here changed that."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #607d8b, #455a64)">
+                L
+              </div>
+              <div>
+                <div class="test-name">Luca</div>
+                <div class="test-info">Canada · Practicing Italian</div>
               </div>
             </div>
+          </div>
 
-            <!-- Duplicated cards for seamless loop -->
+          <!-- Duplicated cards for seamless loop -->
 
-            <!-- Card 1 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "Lingowire got me speaking more consistently instead of just
-                reviewing vocabulary. Real conversation practice each week built
-                my confidence fast."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #ff6b6b, #ee5a24)"
-                >
-                  D
-                </div>
-                <div>
-                  <div class="test-name">Daniel</div>
-                  <div class="test-info">Canada · Practicing French</div>
-                </div>
+          <!-- Card 1 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "Lingowire got me speaking more consistently instead of just
+              reviewing vocabulary. Real conversation practice each week built
+              my confidence fast."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24)">
+                D
+              </div>
+              <div>
+                <div class="test-name">Daniel</div>
+                <div class="test-info">Canada · Practicing French</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 2 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I was losing my Spanish because I had no one to practice with.
-                Now I have regular conversation partners and it keeps me sharp."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #7c4dff, #5c2dbf)"
-                >
-                  M
-                </div>
-                <div>
-                  <div class="test-name">María</div>
-                  <div class="test-info">USA · Practicing Spanish</div>
-                </div>
+          <!-- Card 2 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I was losing my Spanish because I had no one to practice with.
+              Now I have regular conversation partners and it keeps me sharp."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #7c4dff, #5c2dbf)">
+                M
+              </div>
+              <div>
+                <div class="test-name">María</div>
+                <div class="test-info">USA · Practicing Spanish</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 3 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "The conversation prompts make sessions so much easier. No
-                awkward silence, just real talking from the start."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #00bcd4, #0097a7)"
-                >
-                  T
-                </div>
-                <div>
-                  <div class="test-name">Tunde</div>
-                  <div class="test-info">Nigeria · Practicing German</div>
-                </div>
+          <!-- Card 3 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "The conversation prompts make sessions so much easier. No
+              awkward silence, just real talking from the start."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #00bcd4, #0097a7)">
+                T
+              </div>
+              <div>
+                <div class="test-name">Tunde</div>
+                <div class="test-info">Nigeria · Practicing German</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 4 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I’m practicing a less common language and didn’t expect to find
-                partners so easily. That alone makes this app different."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #42b4e6, #1e3a8a)"
-                >
-                  L
-                </div>
-                <div>
-                  <div class="test-name">Lily</div>
-                  <div class="test-info">Canada · Practicing Urhobo</div>
-                </div>
+          <!-- Card 4 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I’m practicing a less common language and didn’t expect to find
+              partners so easily. That alone makes this app different."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #42b4e6, #1e3a8a)">
+                L
+              </div>
+              <div>
+                <div class="test-name">Lily</div>
+                <div class="test-info">Canada · Practicing Urhobo</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 5 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "It feels like language study buddies on demand. I open the app
-                and I’m speaking within minutes."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #4caf50, #2e7d32)"
-                >
-                  J
-                </div>
-                <div>
-                  <div class="test-name">Jason</div>
-                  <div class="test-info">Australia · Practicing Japanese</div>
-                </div>
+          <!-- Card 5 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "It feels like language study buddies on demand. I open the app
+              and I’m speaking within minutes."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #4caf50, #2e7d32)">
+                J
+              </div>
+              <div>
+                <div class="test-name">Jason</div>
+                <div class="test-info">Australia · Practicing Japanese</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 6 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "As a tutor, I like how easy it is to host focused speaking
-                sessions and meet motivated learners."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #ff9800, #e65100)"
-                >
-                  C
-                </div>
-                <div>
-                  <div class="test-name">Claire</div>
-                  <div class="test-info">France · Teaching French</div>
-                </div>
+          <!-- Card 6 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "As a tutor, I like how easy it is to host focused speaking
+              sessions and meet motivated learners."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #ff9800, #e65100)">
+                C
+              </div>
+              <div>
+                <div class="test-name">Claire</div>
+                <div class="test-info">France · Teaching French</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 7 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I joined to practice my spouse’s language so I could speak more
-                with my in-laws. Real conversations made it personal and
-                motivating."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #e91e63, #c2185b)"
-                >
-                  R
-                </div>
-                <div>
-                  <div class="test-name">Ravi</div>
-                  <div class="test-info">UK · Practicing Yoruba</div>
-                </div>
+          <!-- Card 7 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I joined to practice my spouse’s language so I could speak more
+              with my in-laws. Real conversations made it personal and
+              motivating."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #e91e63, #c2185b)">
+                R
+              </div>
+              <div>
+                <div class="test-name">Ravi</div>
+                <div class="test-info">UK · Practicing Yoruba</div>
               </div>
             </div>
+          </div>
 
-            <!-- Card 8 -->
-            <div class="test-card">
-              <div class="test-stars">★★★★★</div>
-              <p class="test-quote">
-                "I used to understand Italian but struggled to speak. Regular
-                conversation practice here changed that."
-              </p>
-              <div class="test-author">
-                <div
-                  class="test-avatar"
-                  style="background: linear-gradient(135deg, #607d8b, #455a64)"
-                >
-                  L
-                </div>
-                <div>
-                  <div class="test-name">Luca</div>
-                  <div class="test-info">Canada · Practicing Italian</div>
-                </div>
+          <!-- Card 8 -->
+          <div class="test-card">
+            <div class="test-stars">★★★★★</div>
+            <p class="test-quote">
+              "I used to understand Italian but struggled to speak. Regular
+              conversation practice here changed that."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar" style="background: linear-gradient(135deg, #607d8b, #455a64)">
+                L
+              </div>
+              <div>
+                <div class="test-name">Luca</div>
+                <div class="test-info">Canada · Practicing Italian</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════ FAQ ═══════ -->
-    <section class="faq-section reveal" id="faq">
-      <div class="section-eyebrow">FAQ</div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-sub">Everything you need to know about Lingowire.</p>
+  <!-- ═══════ FAQ ═══════ -->
+  <section class="faq-section reveal" id="faq">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about Lingowire.</p>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <button
-            class="faq-question"
-            onclick="this.parentElement.classList.toggle('active')"
-          >
-            What is Lingowire?
-            <svg
-              class="faq-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Lingowire is a language app focused on real speaking practice. You
-              can find practice partners, tutors, and conversation prompts for
-              any spoken language.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button
-            class="faq-question"
-            onclick="this.parentElement.classList.toggle('active')"
-          >
-            Is Lingowire free?
-            <svg
-              class="faq-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Yes. Lingowire is free to join and use for finding partners and
-              groups to practice with.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button
-            class="faq-question"
-            onclick="this.parentElement.classList.toggle('active')"
-          >
-            Who can join?
-            <svg
-              class="faq-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Anyone who wants to practice speaking a language can join.
-              Learners, native speakers, and fluent speakers are welcome.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button
-            class="faq-question"
-            onclick="this.parentElement.classList.toggle('active')"
-          >
-            Can I teach on Lingowire?
-            <svg
-              class="faq-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <p>
-              Yes. Tutors and fluent speakers can host a community on Lingowire
-              offering regular practice sessions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════ CTA ═══════ -->
-    <section class="cta-section reveal">
-      <div class="cta-box">
-        <div class="cta-content">
-          <h2>Your next conversation starts here</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          What is Lingowire?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+        <div class="faq-answer">
           <p>
-            Join a growing community of language enthusiasts building
-            conversational proficiency and fluency through practice with real
-            people. Download the app and start speaking today.
+            Lingowire is a language app focused on real speaking practice. You
+            can find practice partners, tutors, and conversation prompts for
+            any spoken language.
           </p>
         </div>
-        <div
-          class="cta-actions"
-          style="display: flex; gap: 16px; flex-wrap: wrap"
-        >
-          <a
-            href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520"
-            target="_blank"
-            class="btn btn-accent btn-large"
-            ><svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style="width: 20px; height: 20px; margin-right: 8px"
-            >
-              <path
-                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-              />
-            </svg>
-            App Store</a
-          >
-          <a
-            href="https://play.google.com/store/apps/details?id=com.lingowire"
-            target="_blank"
-            class="btn btn-accent btn-large"
-            style="background: #fff; color: var(--clr-primary)"
-            ><svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style="width: 20px; height: 20px; margin-right: 8px"
-            >
-              <path
-                d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z"
-              />
-            </svg>
-            Google Play</a
-          >
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Is Lingowire free?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes. Lingowire is free to join and use for finding partners and
+            groups to practice with.
+          </p>
         </div>
       </div>
-    </section>
 
-    <!-- ═══════ FOOTER ═══════ -->
-    <footer class="footer">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">
-            <img
-              src="assets/images/4.png"
-              alt="Lingowire"
-              style="height: 48px; width: auto"
-            />
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Who can join?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Anyone who wants to practice speaking a language can join.
+            Learners, native speakers, and fluent speakers are welcome.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Can I teach on Lingowire?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes. Tutors and fluent speakers can host a community on Lingowire
+            offering regular practice sessions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="cta-section reveal">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2>Your next conversation starts here</h2>
+        <p>
+          Join a growing community of language enthusiasts building
+          conversational proficiency and fluency through practice with real
+          people. Download the app and start speaking today.
+        </p>
+      </div>
+      <div class="cta-actions" style="display: flex; gap: 16px; flex-wrap: wrap">
+        <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank"
+          class="btn btn-accent btn-large"><svg viewBox="0 0 24 24" fill="currentColor"
+            style="width: 20px; height: 20px; margin-right: 8px">
+            <path
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+          </svg>
+          App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.lingowire" target="_blank"
+          class="btn btn-accent btn-large" style="background: #fff; color: var(--clr-primary)"><svg viewBox="0 0 24 24"
+            fill="currentColor" style="width: 20px; height: 20px; margin-right: 8px">
+            <path
+              d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z" />
+          </svg>
+          Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <img src="assets/images/4.png" alt="Lingowire" style="height: 48px; width: auto" />
+        </a>
+        <p>Practice any language with real people.</p>
+        <div class="footer-social">
+          <a href="https://x.com/lingowire" target="_blank" aria-label="X">𝕏</a>
+          <a href="https://www.instagram.com/lingowire" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"
+              fill="currentColor" width="18" height="18">
+              <path
+                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/@lingowire" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24"
+              fill="currentColor" width="18" height="18">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.89a8.28 8.28 0 0 0 3.76.9V6.34a4.83 4.83 0 0 1 0 .35z" />
+            </svg></a>
+        </div>
+        <div class="footer-badges">
+          <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank"
+            class="store-badge" aria-label="Download on the App Store">
+            <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+            </svg>
+            <span><small>Download on the</small>App Store</span>
           </a>
-          <p>Practice any language with real people.</p>
-          <div class="footer-social">
-            <a href="https://x.com/lingowire" target="_blank" aria-label="X"
-              >𝕏</a
-            >
-            <a
-              href="https://www.instagram.com/lingowire"
-              target="_blank"
-              aria-label="Instagram"
-              ><svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="18"
-                height="18"
-              >
-                <path
-                  d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
-                /></svg
-            ></a>
-            <a
-              href="https://www.tiktok.com/@lingowire"
-              target="_blank"
-              aria-label="TikTok"
-              ><svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="18"
-                height="18"
-              >
-                <path
-                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.89a8.28 8.28 0 0 0 3.76.9V6.34a4.83 4.83 0 0 1 0 .35z"
-                /></svg
-            ></a>
-          </div>
-          <div class="footer-badges">
-            <a
-              href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520"
-              target="_blank"
-              class="store-badge"
-              aria-label="Download on the App Store"
-            >
-              <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20">
-                <path
-                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                />
-              </svg>
-              <span><small>Download on the</small>App Store</span>
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.lingowire"
-              target="_blank"
-              class="store-badge"
-              aria-label="Get it on Google Play"
-            >
-              <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20">
-                <path
-                  d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z"
-                />
-              </svg>
-              <span><small>GET IT ON</small>Google Play</span>
-            </a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <a href="#why">Why Lingowire?</a>
-          <a href="#how">How it Works</a>
-          <a href="#faq">FAQ</a>
+          <a href="https://play.google.com/store/apps/details?id=com.lingowire" target="_blank" class="store-badge"
+            aria-label="Get it on Google Play">
+            <svg viewBox="0 0 24 24" fill="#fff" width="20" height="20">
+              <path
+                d="M3.61 1.41L13.18 11l2.48-2.48L5.09.49C4.53.17 3.93.07 3.39.19l.22 1.22zm-.63 1.2a1.54 1.54 0 0 0-.15.66v17.45c0 .24.05.46.15.67l9.54-9.54L3 2.61h-.02zM20.11 10.12l-2.94-1.66-2.7 2.7 2.7 2.7 2.94-1.66c.66-.37 1.04-.93 1.04-1.54s-.38-1.17-1.04-1.54zM5.09 23.51l10.97-6.03-2.48-2.48-9.57 9.57c.56.31 1.18.22 1.08-.06z" />
+            </svg>
+            <span><small>GET IT ON</small>Google Play</span>
+          </a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 Lingowire Inc. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="contact.html">Contact</a>
-        </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#why">Why Lingowire?</a>
+        <a href="#how">How it Works</a>
+        <a href="#faq">FAQ</a>
       </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lingowire Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <script>
-      // Scroll nav shadow
-      const nav = document.getElementById("nav");
-      window.addEventListener("scroll", () => {
-        nav.classList.toggle("scrolled", window.scrollY > 20);
-      });
+  <script>
+    // Scroll nav shadow
+    const nav = document.getElementById("nav");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
 
-      // Mobile menu toggle
-      const navToggle = document.querySelector(".nav-toggle");
-      const navLinks = document.querySelector(".nav-links");
-      const overlay = document.getElementById("mobileOverlay");
+    // Mobile menu toggle
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const overlay = document.getElementById("mobileOverlay");
 
-      function closeMenu() {
-        navToggle.classList.remove("active");
-        navLinks.classList.remove("open");
-        overlay.classList.remove("visible");
-        document.body.style.overflow = "";
+    function closeMenu() {
+      navToggle.classList.remove("active");
+      navLinks.classList.remove("open");
+      overlay.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.contains("open");
+      if (isOpen) {
+        closeMenu();
+      } else {
+        navToggle.classList.add("active");
+        navLinks.classList.add("open");
+        overlay.classList.add("visible");
+        document.body.style.overflow = "hidden";
       }
+    });
 
-      navToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.contains("open");
-        if (isOpen) {
-          closeMenu();
-        } else {
-          navToggle.classList.add("active");
-          navLinks.classList.add("open");
-          overlay.classList.add("visible");
-          document.body.style.overflow = "hidden";
+    overlay.addEventListener("click", closeMenu);
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+    );
+    reveals.forEach((el) => observer.observe(el));
+
+    // GSAP ScrollTrigger feature animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    function getSlideDistance() {
+      return window.innerWidth <= 768 ? 60 : 120;
+    }
+
+    document.querySelectorAll(".feature-row").forEach((row, i) => {
+      const visual = row.querySelector(".feature-visual");
+      const content = row.querySelector(".feature-content");
+      if (!visual || !content) return;
+
+      const isOdd = i % 2 === 0; // 0-indexed: 0,2 = odd rows visually
+      const dist = getSlideDistance();
+
+      // Visual: odd rows from right, even rows from left
+      gsap.fromTo(
+        visual,
+        { x: isOdd ? dist : -dist, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 85%",
+            end: "top 30%",
+            scrub: 1,
+          },
+        },
+      );
+
+      // Content: odd rows from left, even rows from right
+      gsap.fromTo(
+        content,
+        { x: isOdd ? -dist : dist, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 85%",
+            end: "top 30%",
+            scrub: 1,
+          },
+        },
+      );
+    });
+
+    // Adjust orbit radius on mobile
+    function adjustOrbitRadius() {
+      const isMobile = window.innerWidth <= 768;
+      const radius = isMobile ? 130 : 260;
+      document.querySelectorAll(".orbit-item").forEach((item) => {
+        const style = item.getAttribute("style");
+        if (style) {
+          const updated = style.replace(
+            /translate\(\d+px\)/g,
+            `translate(${radius}px)`,
+          );
+          item.setAttribute("style", updated);
         }
       });
+    }
+    adjustOrbitRadius();
+    window.addEventListener("resize", adjustOrbitRadius);
 
-      overlay.addEventListener("click", closeMenu);
-
-      navLinks.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", closeMenu);
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const target = document.querySelector(a.getAttribute("href"));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
+    });
+  </script>
 
-      // Reveal on scroll
-      const reveals = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
-      );
-      reveals.forEach((el) => observer.observe(el));
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script>
+    // Initialize 3D Globe
+    document.addEventListener("DOMContentLoaded", function () {
+      const gData = [
+        { lat: 51.5, lng: -0.1, label: "🇬🇧 English" },
+        { lat: 40.4, lng: -3.7, label: "🇪🇸 Spanish" },
+        { lat: 48.8, lng: 2.3, label: "🇫🇷 French" },
+        { lat: 52.5, lng: 13.4, label: "🇩🇪 German" },
+        { lat: 35.6, lng: 139.6, label: "🇯🇵 Japanese" },
+        { lat: 39.9, lng: 116.4, label: "🇨🇳 Mandarin" },
+        { lat: 37.5, lng: 126.9, label: "🇰🇷 Korean" },
+        { lat: 38.7, lng: -9.1, label: "🇵🇹 Portuguese" },
+        { lat: 24.7, lng: 46.7, label: "🇦🇪 Arabic" },
+        { lat: 41.9, lng: 12.5, label: "🇮🇹 Italian" },
+        { lat: 6.5, lng: 7.5, label: "🇳🇬 Igbo" },
+        { lat: 5.5, lng: 5.9, label: "🇳🇬 Urhobo" },
+        { lat: -6.1, lng: 39.2, label: "🇹🇿 Swahili" },
+        { lat: 28.6, lng: 77.2, label: "🇮🇳 Hindi" },
+        { lat: 39.9, lng: 32.8, label: "🇹🇷 Turkish" },
+        { lat: 21.0, lng: 105.8, label: "🇻🇳 Vietnamese" },
+        { lat: 55.7, lng: 37.6, label: "🇷🇺 Russian" },
+        { lat: 52.3, lng: 4.9, label: "🇳🇱 Dutch" },
+        { lat: 37.9, lng: 23.7, label: "🇬🇷 Greek" },
+      ];
 
-      // GSAP ScrollTrigger feature animations
-      gsap.registerPlugin(ScrollTrigger);
+      const isMobile = window.innerWidth < 768;
+      const globeContainer = document.querySelector(".lang-globe-cloud");
 
-      function getSlideDistance() {
-        return window.innerWidth <= 768 ? 60 : 120;
-      }
-
-      document.querySelectorAll(".feature-row").forEach((row, i) => {
-        const visual = row.querySelector(".feature-visual");
-        const content = row.querySelector(".feature-content");
-        if (!visual || !content) return;
-
-        const isOdd = i % 2 === 0; // 0-indexed: 0,2 = odd rows visually
-        const dist = getSlideDistance();
-
-        // Visual: odd rows from right, even rows from left
-        gsap.fromTo(
-          visual,
-          { x: isOdd ? dist : -dist, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: row,
-              start: "top 85%",
-              end: "top 30%",
-              scrub: 1,
-            },
-          },
-        );
-
-        // Content: odd rows from left, even rows from right
-        gsap.fromTo(
-          content,
-          { x: isOdd ? -dist : dist, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: row,
-              start: "top 85%",
-              end: "top 30%",
-              scrub: 1,
-            },
-          },
-        );
-      });
-
-      // Adjust orbit radius on mobile
-      function adjustOrbitRadius() {
-        const isMobile = window.innerWidth <= 768;
-        const radius = isMobile ? 130 : 260;
-        document.querySelectorAll(".orbit-item").forEach((item) => {
-          const style = item.getAttribute("style");
-          if (style) {
-            const updated = style.replace(
-              /translate\(\d+px\)/g,
-              `translate(${radius}px)`,
-            );
-            item.setAttribute("style", updated);
-          }
-        });
-      }
-      adjustOrbitRadius();
-      window.addEventListener("resize", adjustOrbitRadius);
-
-      // Smooth scroll for nav links
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener("click", (e) => {
-          const target = document.querySelector(a.getAttribute("href"));
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      });
-
-      // Initialize 3D Globe
-      document.addEventListener("DOMContentLoaded", function () {
-        const gData = [
-          { lat: 51.5, lng: -0.1, label: "🇬🇧 English" },
-          { lat: 40.4, lng: -3.7, label: "🇪🇸 Spanish" },
-          { lat: 48.8, lng: 2.3, label: "🇫🇷 French" },
-          { lat: 52.5, lng: 13.4, label: "🇩🇪 German" },
-          { lat: 35.6, lng: 139.6, label: "🇯🇵 Japanese" },
-          { lat: 39.9, lng: 116.4, label: "🇨🇳 Mandarin" },
-          { lat: 37.5, lng: 126.9, label: "🇰🇷 Korean" },
-          { lat: 38.7, lng: -9.1, label: "🇵🇹 Portuguese" },
-          { lat: 24.7, lng: 46.7, label: "🇦🇪 Arabic" },
-          { lat: 41.9, lng: 12.5, label: "🇮🇹 Italian" },
-          { lat: 6.5, lng: 7.5, label: "🇳🇬 Igbo" },
-          { lat: 5.5, lng: 5.9, label: "🇳🇬 Urhobo" },
-          { lat: -6.1, lng: 39.2, label: "🇹🇿 Swahili" },
-          { lat: 28.6, lng: 77.2, label: "🇮🇳 Hindi" },
-          { lat: 39.9, lng: 32.8, label: "🇹🇷 Turkish" },
-          { lat: 21.0, lng: 105.8, label: "🇻🇳 Vietnamese" },
-          { lat: 55.7, lng: 37.6, label: "🇷🇺 Russian" },
-          { lat: 52.3, lng: 4.9, label: "🇳🇱 Dutch" },
-          { lat: 37.9, lng: 23.7, label: "🇬🇷 Greek" },
-        ];
-
-        const isMobile = window.innerWidth < 768;
-        const globeContainer = document.querySelector(".lang-globe-cloud");
-
-        const globe = Globe()(globeContainer)
-          .globeImageUrl(
-            "//unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
-          )
-          .backgroundColor("rgba(0,0,0,0)")
-          .htmlElementsData(gData)
-          .htmlElement((d) => {
-            const el = document.createElement("div");
-            el.innerHTML = `
+      const globe = Globe()(globeContainer)
+        .globeImageUrl(
+          "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
+        )
+        .backgroundColor("rgba(0,0,0,0)")
+        .htmlElementsData(gData)
+        .htmlElement((d) => {
+          const el = document.createElement("div");
+          el.innerHTML = `
             <div style="background: var(--clr-surface); border-radius: 30px; border: 1px solid var(--clr-border); padding: 6px 14px; font-size: ${isMobile ? 12 : 14}px; font-family: var(--font-body); font-weight: 600; color: var(--clr-text); box-shadow: 0 4px 16px rgba(0,0,0,0.06); cursor: pointer; white-space: nowrap; transition: all 0.25s ease;">
               ${d.label}
             </div>
           `;
-            el.addEventListener("mouseenter", (e) => {
-              const inner = e.currentTarget.firstElementChild;
-              inner.style.background = "var(--clr-primary)";
-              inner.style.color = "#fff";
-              inner.style.borderColor = "var(--clr-primary)";
-              inner.style.transform = "scale(1.1)";
-              inner.style.boxShadow = "0 8px 24px rgba(30, 58, 138, 0.2)";
-              inner.style.zIndex = "100";
-              globe.controls().autoRotate = false;
-            });
-            el.addEventListener("mouseleave", (e) => {
-              const inner = e.currentTarget.firstElementChild;
-              inner.style.background = "var(--clr-surface)";
-              inner.style.color = "var(--clr-text)";
-              inner.style.borderColor = "var(--clr-border)";
-              inner.style.transform = "scale(1)";
-              inner.style.boxShadow = "0 4px 16px rgba(0,0,0,0.06)";
-              inner.style.zIndex = "1";
-              globe.controls().autoRotate = true;
-            });
-            return el;
+          el.addEventListener("mouseenter", (e) => {
+            const inner = e.currentTarget.firstElementChild;
+            inner.style.background = "var(--clr-primary)";
+            inner.style.color = "#fff";
+            inner.style.borderColor = "var(--clr-primary)";
+            inner.style.transform = "scale(1.1)";
+            inner.style.boxShadow = "0 8px 24px rgba(30, 58, 138, 0.2)";
+            inner.style.zIndex = "100";
+            globe.controls().autoRotate = false;
           });
+          el.addEventListener("mouseleave", (e) => {
+            const inner = e.currentTarget.firstElementChild;
+            inner.style.background = "var(--clr-surface)";
+            inner.style.color = "var(--clr-text)";
+            inner.style.borderColor = "var(--clr-border)";
+            inner.style.transform = "scale(1)";
+            inner.style.boxShadow = "0 4px 16px rgba(0,0,0,0.06)";
+            inner.style.zIndex = "1";
+            globe.controls().autoRotate = true;
+          });
+          return el;
+        });
 
-        // Auto-rotate
-        globe.controls().autoRotate = true;
-        globe.controls().autoRotateSpeed = 1.0;
-        // Disable zoom/pan to avoid interrupting page scroll
-        globe.controls().enableZoom = false;
+      // Auto-rotate
+      globe.controls().autoRotate = true;
+      globe.controls().autoRotateSpeed = 1.0;
+      // Disable zoom/pan to avoid interrupting page scroll
+      globe.controls().enableZoom = false;
 
-        // Setup initial size
-        const resizeGlobe = () => {
-          const width = globeContainer.clientWidth || (isMobile ? 320 : 600);
-          const height = globeContainer.clientHeight || (isMobile ? 320 : 450);
-          globe.width(width).height(height);
-          globe.camera().position.z = isMobile ? 320 : 260;
-        };
+      // Setup initial size
+      const resizeGlobe = () => {
+        const width = globeContainer.clientWidth || (isMobile ? 320 : 600);
+        const height = globeContainer.clientHeight || (isMobile ? 320 : 450);
+        globe.width(width).height(height);
+        globe.camera().position.z = isMobile ? 320 : 260;
+      };
 
-        // Delay initialization slightly to ensure container is rendered
-        setTimeout(resizeGlobe, 100);
-        window.addEventListener("resize", resizeGlobe);
-      });
-    </script>
+      // Delay initialization slightly to ensure container is rendered
+      setTimeout(resizeGlobe, 100);
+      window.addEventListener("resize", resizeGlobe);
+    });
+  </script>
 
-    <script src="//unpkg.com/globe.gl"></script>
-  </body>
+</body>
+
 </html>
