@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"></script>
+<style>
+  body { background: #FAFBFF; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'DM Sans', sans-serif; }
+  .globe-wrapper {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .earth-backdrop {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #EDF2FA, #D0DDF2);
+      box-shadow: inset -20px -20px 40px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.08);
+      z-index: 0;
+  }
+  .lang-globe-cloud {
+      position: relative;
+      z-index: 1;
+      width: 400px;
+      height: 400px;
+  }
+  .tagcloud {
+      font-weight: 600;
+      color: #1E3A8A;
+      font-size: 16px;
+      cursor: pointer;
+  }
+  .tagcloud--item:hover {
+      color: #42B4E6 !important;
+  }
+  
+  .lang-chip {
+      background: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid #DEE5F0;
+      display: inline-block;
+      transition: all 0.2s;
+  }
+</style>
+</head>
+<body>
+  <div class="globe-wrapper">
+     <div class="earth-backdrop"></div>
+     <div class="lang-globe-cloud"></div>
+  </div>
+  <script>
+    const myTags = [
+        '🇬🇧 English', '🇪🇸 Spanish', '🇫🇷 French', '🇩🇪 German', '🇯🇵 Japanese', 
+        '🇨🇳 Mandarin', '🇰🇷 Korean', '🇵🇹 Portuguese', '🇦🇪 Arabic', '🇮🇹 Italian', 
+        '🇳🇬 Igbo', '🇳🇬 Urhobo', '🇹🇿 Swahili', '🌍 Over 100+', '🇮🇳 Hindi', 
+        '🇹🇷 Turkish', '🇻🇳 Vietnamese', '🇷🇺 Russian'
+    ];
+    // TagCloud wrapper allows custom html rendering? No, TagCloud converts the string to Text.
+    // If we want custom HTML inside TagCloud, version 2.2.0 doesn't natively support it easily unless we use a fork, but we can style the `.tagcloud--item` itself!
+    TagCloud('.lang-globe-cloud', myTags, {
+      radius: 170,
+      maxSpeed: 'fast',
+      initSpeed: 'slow',
+      direction: 135,
+      keep: true
+    });
+    // Add custom class to all generated items
+    setTimeout(() => {
+        document.querySelectorAll('.tagcloud--item').forEach(el => {
+            el.style.background = '#fff';
+            el.style.padding = '5px 12px';
+            el.style.borderRadius = '20px';
+            el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            el.style.border = '1px solid #DEE5F0';
+        });
+    }, 100);
+  </script>
+</body>
+</html>
