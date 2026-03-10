@@ -2453,7 +2453,7 @@
       </div>
       <div class="nav-actions">
         <div class="download-dropdown">
-          <a href="#" class="btn btn-primary">Download Lingowire ▾</a>
+          <a href="#" class="btn btn-primary" onclick="handleDownloadClick(event)">Download Lingowire ▾</a>
           <div class="dropdown-menu">
             <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -2490,7 +2490,8 @@
 
       <div class="hero-cta">
         <div class="download-dropdown">
-          <a href="#" class="btn btn-primary btn-large" style="background: #1a1a1a; padding: 16px 40px">Download
+          <a href="#" class="btn btn-primary btn-large" style="background: #1a1a1a; padding: 16px 40px"
+            onclick="handleDownloadClick(event)">Download
             Lingowire ▾</a>
           <div class="dropdown-menu">
             <a href="https://apps.apple.com/us/app/lingowire-language-practice/id6753318520" target="_blank">
@@ -3370,6 +3371,22 @@
     }
     adjustOrbitRadius();
     window.addEventListener("resize", adjustOrbitRadius);
+
+    // Device-specific download link handling
+    function handleDownloadClick(e) {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      // On iOS devices, redirect to App Store
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://apps.apple.com/us/app/lingowire-language-practice/id6753318520";
+        e.preventDefault();
+      }
+      // On Android devices, redirect to Google Play
+      else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.lingowire";
+        e.preventDefault();
+      }
+      // On desktop, do nothing (CSS hover handles the dropdown)
+    }
 
     // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
