@@ -961,12 +961,12 @@
 
     @media (max-width: 768px) {
       .lang-globe-wrapper {
-        height: 380px;
+        height: 420px;
       }
 
       .earth-backdrop {
-        width: 240px;
-        height: 240px;
+        width: 300px;
+        height: 300px;
       }
 
       .earth-backdrop::before {
@@ -3491,7 +3491,7 @@
         const width = globeContainer.clientWidth || (isMobile ? 320 : 600);
         const height = globeContainer.clientHeight || (isMobile ? 320 : 450);
         globe.width(width).height(height);
-        globe.camera().position.z = isMobile ? 320 : 260;
+        globe.camera().position.z = isMobile ? 260 : 260;
       };
 
       // Delay initialization slightly to ensure container is rendered
