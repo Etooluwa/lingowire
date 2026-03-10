@@ -3486,12 +3486,22 @@
       // Disable zoom/pan to avoid interrupting page scroll
       globe.controls().enableZoom = false;
 
-      // Setup initial size
-      const resizeGlobe = () => {
+      let lastWidth = window.innerWidth;
+      const resizeGlobe = (e) => {
+        // Prevent resize on mobile scroll (where only height changes due to URL bar)
+        if (e && e.type === 'resize' && isMobile && window.innerWidth === lastWidth) {
+          return;
+        }
+        lastWidth = window.innerWidth;
+
         const width = globeContainer.clientWidth || (isMobile ? 320 : 600);
         const height = globeContainer.clientHeight || (isMobile ? 320 : 450);
         globe.width(width).height(height);
-        globe.camera().position.z = isMobile ? 260 : 260;
+        
+        // Ensure camera position persists after Globe.gl internal updates
+        setTimeout(() => {
+          globe.camera().position.z = isMobile ? 260 : 260;
+        }, 50);
       };
 
       // Delay initialization slightly to ensure container is rendered
